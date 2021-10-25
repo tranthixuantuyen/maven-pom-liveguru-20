@@ -9,5 +9,6 @@ public class AbstractPageUI {
 	
 	//Dynamic link
 	public static final String DYNAMIC_LINK = "//div[@class='listbox']//a[text()='%s']";
+	//test
 
 }
