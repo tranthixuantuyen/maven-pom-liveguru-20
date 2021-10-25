@@ -1,0 +1,24 @@
+[INFO ] [2021-07-28 22:57:42,770] Register - Step 01: Open Home Page
+[INFO ] [2021-07-28 22:57:42,773] Register - Step 02: Verify Register link displayed
+[INFO ] [2021-07-28 22:57:42,909] Register - Step 03: Verify Login link displayed
+[INFO ] [2021-07-28 22:57:43,015] Register - Step 04: Click to Register link at HomePage
+[INFO ] [2021-07-28 22:57:44,415] Register - Step 05:Click to gender male button
+[INFO ] [2021-07-28 22:57:44,705] Register - Step 06:input value to firstname with valueTran
+[INFO ] [2021-07-28 22:57:44,817] Register - Step 07:input value to lastName with valueTuyen
+[INFO ] [2021-07-28 22:57:44,925] Register - Step 08:select day dropdown
+[INFO ] [2021-07-28 22:57:45,252] Register - Step 09:select month dropdown
+[INFO ] [2021-07-28 22:57:45,579] Register - Step 10:select year dropdown
+[INFO ] [2021-07-28 22:57:45,907] Register - Step 11: input email
+[INFO ] [2021-07-28 22:57:46,001] Register - Step 12:input company
+[INFO ] [2021-07-28 22:57:46,106] Register - Step 13:input password textbox with value
+[INFO ] [2021-07-28 22:57:46,271] Register - Step 14:Click to register button at register page
+[INFO ] [2021-07-28 22:57:47,666] Register - Step 15: Verify success mesage displayed
+[INFO ] [2021-07-28 22:57:47,735] Register - Step 16: CLick to logout link
+[INFO ] [2021-07-28 22:57:49,440] Register - Step 01: CLick to login link
+[INFO ] [2021-07-28 22:57:50,558] Register - Step 02: input email
+[INFO ] [2021-07-28 22:57:50,668] Register - Step 03: input password
+[INFO ] [2021-07-28 22:57:50,758] Register - Step 04: click login button
+[INFO ] [2021-07-28 22:57:52,135] Register - Step 05: Verify My Account link displayed
+[INFO ] [2021-07-28 22:57:52,214] Register - Step 06: Verify My Logout link displayed
+[INFO ] [2021-07-28 22:57:52,273] Register - Step 07: Verify Register link undisplayed
+[INFO ] [2021-07-28 22:58:02,372] Register - Step 08: Verify Login link undisplayed

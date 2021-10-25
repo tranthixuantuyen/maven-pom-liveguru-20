@@ -1,0 +1,275 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>maven-pom-liveguru-20</groupId>
+  <artifactId>maven-pom-liveguru-20</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>maven-pom-liveguru-20</name>
+  
+  <properties>
+		<!-- Encoding for Build/ Console -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<!-- Encoding for Report -->
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<!-- Compiler Code with Java 8 -->
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+
+		<!-- Global variable for dependencies -->
+		<webdriver.version>3.141.59</webdriver.version>
+		<testng.version>6.14.3</testng.version>
+		<jackson.version>2.9.4</jackson.version>
+		<webdrivermanager.version>4.2.2</webdrivermanager.version>
+		<aspectj.version>1.8.10</aspectj.version>
+		<cucumber.version> 1.2.5 </cucumber.version>
+		<selenium.version> 3.14.0 </selenium.version>
+
+	</properties>
+	
+  <!-- Quản lí thư viện -->
+		<dependencies>
+				<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>${cucumber.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-core</artifactId>
+			<version>${cucumber.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-junit</artifactId>
+			<version>${cucumber.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-testng</artifactId>
+			<version>${cucumber.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>${selenium.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.github.bonigarcia</groupId>
+			<artifactId>webdrivermanager</artifactId>
+			<version>4.1.0</version>
+		</dependency>
+		<dependency>
+		    <groupId>io.cucumber</groupId>
+		    <artifactId>cucumber-java</artifactId>
+		    <version>6.10.4</version>
+		</dependency>
+		<dependency>
+		    <groupId>io.cucumber</groupId>
+		    <artifactId>cucumber-junit</artifactId>
+		    <version>6.10.4</version>
+		    <scope>test</scope>
+		</dependency>
+		<dependency>
+		    <groupId>io.cucumber</groupId>
+		    <artifactId>cucumber-plugin</artifactId>
+		    <version>6.10.4</version>
+		</dependency>
+		<dependency>
+		    <groupId>io.cucumber</groupId>
+		    <artifactId>cucumber-jvm-deps</artifactId>
+		    <version>1.0.6</version>
+		    <scope>provided</scope>
+		</dependency>
+		<dependency>
+		    <groupId>io.cucumber</groupId>
+		    <artifactId>cucumber-jvm</artifactId>
+		    <version>6.10.4</version>
+		    <type>pom</type>
+		</dependency>
+		<dependency>
+		    <groupId>io.cucumber</groupId>
+		    <artifactId>cucumber-testng</artifactId>
+		    <version>6.10.4</version>
+		</dependency>
+		<dependency>
+		    <groupId>io.cucumber</groupId>
+		    <artifactId>cucumber-core</artifactId>
+		    <version>6.9.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>${selenium.version}</version>
+		</dependency>
+		
+		<!-- TestNG -->
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>${testng.version}</version>
+		</dependency>
+		<!-- Selenium Java -->
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>${webdriver.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-support</artifactId>
+			<version>${webdriver.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.github.bonigarcia</groupId>
+			<artifactId>webdrivermanager</artifactId>
+			<version>${webdrivermanager.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.uncommons</groupId>
+			<artifactId>reportng</artifactId>
+			<version>1.1.4</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.aventstack</groupId>
+			<artifactId>extentreports</artifactId>
+			<version>4.0.9</version>
+		</dependency>
+
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>2.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.16</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.24</version>
+		</dependency>
+
+		<dependency>
+			<groupId>velocity</groupId>
+			<artifactId>velocity-dep</artifactId>
+			<version>1.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.inject</groupId>
+			<artifactId>guice</artifactId>
+			<version>4.1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.javafaker</groupId>
+			<artifactId>javafaker</artifactId>
+			<version>1.0.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.qameta.allure</groupId>
+			<artifactId>allure-testng</artifactId>
+			<version>2.13.5</version>
+		</dependency>
+	</dependencies>
+
+	<!-- Compiler/ Run Test -->
+	<build>
+		<plugins>
+			<!-- Compiler -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<!-- Compiler code vs Java 8 -->
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+
+			<!-- Run test -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.22.2</version>
+				<configuration>
+					<!-- Run TestNG xml file -->
+					<suiteXmlFiles>
+						<file>src/test/resources/runUserTestcases.xml</file>
+					</suiteXmlFiles>
+
+					<!-- Argument -->
+					<argLine>
+						-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+					</argLine>
+				</configuration>
+				
+				<dependencies>
+					<dependency>
+						<groupId>org.aspectj</groupId>
+						<artifactId>aspectjweaver</artifactId>
+						<version>${aspectj.version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			
+			<!-- Generate report -->
+			<plugin>
+				<groupId>net.masterthought</groupId>
+				<artifactId>maven-cucumber-reporting</artifactId>
+				<version>3.10.0</version>
+				<executions>
+					<execution>
+						<id>execution</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<projectName>maven-pom-liveguru-20</projectName>
+							<outputDirectory>${project.build.directory}/site/cucumber-reporting</outputDirectory>
+							<cucumberOutput>${project.build.directory}/site/cucumber.json</cucumberOutput>
+							<enableFlashCharts>true</enableFlashCharts>
+							<skippedFails>true</skippedFails>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			
+		</plugins>
+	</build>
+</project>

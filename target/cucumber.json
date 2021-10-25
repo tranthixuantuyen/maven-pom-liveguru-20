@@ -1,0 +1,362 @@
+[
+  {
+    "line": 2,
+    "elements": [
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 5496094300,
+              "status": "passed"
+            },
+            "match": {
+              "location": "FacebookSteps.openFacebookApplication()"
+            }
+          }
+        ],
+        "line": 14,
+        "name": "Create new Customer with email 0977108233",
+        "description": "",
+        "id": "datatable-feature;create-new-customer-with-email-\u003cusername\u003e;;2",
+        "after": [
+          {
+            "result": {
+              "duration": 643761400,
+              "status": "passed"
+            },
+            "match": {
+              "location": "FacebookSteps.closeApplication()"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 307451100,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "Input to Username and Password",
+            "match": {
+              "location": "FacebookSteps.inputToUsernameAndPassword(DataTable)"
+            },
+            "matchedColumns": [
+              0,
+              1
+            ],
+            "rows": [
+              {
+                "cells": [
+                  "Name",
+                  "Pass"
+                ],
+                "line": 8
+              },
+              {
+                "cells": [
+                  "0977108233",
+                  "123456"
+                ],
+                "line": 9
+              }
+            ],
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 62240900,
+              "status": "passed"
+            },
+            "line": 10,
+            "name": "Click to Submit button",
+            "match": {
+              "location": "FacebookSteps.clickToSubmitButton()"
+            },
+            "keyword": "And "
+          }
+        ],
+        "tags": [
+          {
+            "line": 1,
+            "name": "@datatable"
+          },
+          {
+            "line": 4,
+            "name": "@datatable_step"
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 2298972000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "FacebookSteps.openFacebookApplication()"
+            }
+          }
+        ],
+        "line": 15,
+        "name": "Create new Customer with email 0977108234",
+        "description": "",
+        "id": "datatable-feature;create-new-customer-with-email-\u003cusername\u003e;;3",
+        "after": [
+          {
+            "result": {
+              "duration": 618022900,
+              "status": "passed"
+            },
+            "match": {
+              "location": "FacebookSteps.closeApplication()"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 201704900,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "Input to Username and Password",
+            "match": {
+              "location": "FacebookSteps.inputToUsernameAndPassword(DataTable)"
+            },
+            "matchedColumns": [
+              0,
+              1
+            ],
+            "rows": [
+              {
+                "cells": [
+                  "Name",
+                  "Pass"
+                ],
+                "line": 8
+              },
+              {
+                "cells": [
+                  "0977108234",
+                  "123456"
+                ],
+                "line": 9
+              }
+            ],
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 68209000,
+              "status": "passed"
+            },
+            "line": 10,
+            "name": "Click to Submit button",
+            "match": {
+              "location": "FacebookSteps.clickToSubmitButton()"
+            },
+            "keyword": "And "
+          }
+        ],
+        "tags": [
+          {
+            "line": 1,
+            "name": "@datatable"
+          },
+          {
+            "line": 4,
+            "name": "@datatable_step"
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 2008607300,
+              "status": "passed"
+            },
+            "match": {
+              "location": "FacebookSteps.openFacebookApplication()"
+            }
+          }
+        ],
+        "line": 16,
+        "name": "Create new Customer with email 0977108235",
+        "description": "",
+        "id": "datatable-feature;create-new-customer-with-email-\u003cusername\u003e;;4",
+        "after": [
+          {
+            "result": {
+              "duration": 631130400,
+              "status": "passed"
+            },
+            "match": {
+              "location": "FacebookSteps.closeApplication()"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 207468700,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "Input to Username and Password",
+            "match": {
+              "location": "FacebookSteps.inputToUsernameAndPassword(DataTable)"
+            },
+            "matchedColumns": [
+              0,
+              1
+            ],
+            "rows": [
+              {
+                "cells": [
+                  "Name",
+                  "Pass"
+                ],
+                "line": 8
+              },
+              {
+                "cells": [
+                  "0977108235",
+                  "123456"
+                ],
+                "line": 9
+              }
+            ],
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 69889700,
+              "status": "passed"
+            },
+            "line": 10,
+            "name": "Click to Submit button",
+            "match": {
+              "location": "FacebookSteps.clickToSubmitButton()"
+            },
+            "keyword": "And "
+          }
+        ],
+        "tags": [
+          {
+            "line": 1,
+            "name": "@datatable"
+          },
+          {
+            "line": 4,
+            "name": "@datatable_step"
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 3265884500,
+              "status": "passed"
+            },
+            "match": {
+              "location": "FacebookSteps.openFacebookApplication()"
+            }
+          }
+        ],
+        "line": 17,
+        "name": "Create new Customer with email 0977108236",
+        "description": "",
+        "id": "datatable-feature;create-new-customer-with-email-\u003cusername\u003e;;5",
+        "after": [
+          {
+            "result": {
+              "duration": 614486400,
+              "status": "passed"
+            },
+            "match": {
+              "location": "FacebookSteps.closeApplication()"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 240952500,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "Input to Username and Password",
+            "match": {
+              "location": "FacebookSteps.inputToUsernameAndPassword(DataTable)"
+            },
+            "matchedColumns": [
+              0,
+              1
+            ],
+            "rows": [
+              {
+                "cells": [
+                  "Name",
+                  "Pass"
+                ],
+                "line": 8
+              },
+              {
+                "cells": [
+                  "0977108236",
+                  "123456"
+                ],
+                "line": 9
+              }
+            ],
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 64696100,
+              "status": "passed"
+            },
+            "line": 10,
+            "name": "Click to Submit button",
+            "match": {
+              "location": "FacebookSteps.clickToSubmitButton()"
+            },
+            "keyword": "And "
+          }
+        ],
+        "tags": [
+          {
+            "line": 1,
+            "name": "@datatable"
+          },
+          {
+            "line": 4,
+            "name": "@datatable_step"
+          }
+        ]
+      }
+    ],
+    "name": "Datatable Feature",
+    "description": "",
+    "id": "datatable-feature",
+    "keyword": "Feature",
+    "uri": "dataTable.feature",
+    "tags": [
+      {
+        "line": 1,
+        "name": "@datatable"
+      }
+    ]
+  }
+]

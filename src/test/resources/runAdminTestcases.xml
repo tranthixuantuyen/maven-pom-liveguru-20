@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Suite" parallel="false">
+
+	<test name="Run on FIREFOX UI">
+		<parameter name="browser" value="chrome_ui" />
+		<parameter name="url" value="https://admin-demo.nopcommerce.com/" />
+		<classes>
+			<class
+				name="com.nopcommerce.admin.Level_09_Web_Data_Table" />
+		</classes>
+	</test>
+  
+</suite>

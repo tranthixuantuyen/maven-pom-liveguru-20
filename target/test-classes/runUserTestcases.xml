@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Suite" parallel="false">
+
+	<listeners>
+		<listener class-name="commons.MethodListener" />
+	</listeners>
+	
+	<test name="Run on FIREFOX UI">
+		<parameter name="browser" value="firefox_ui" />
+		<parameter name="url" value="https://demo.nopcommerce.com/" />
+		<classes>
+			<class
+				name="com.nopcommerce.user.Level_13_Register_Login_Log_Report_HTML" />
+		</classes>
+	</test>
+
+ <!--  <test name="Run on FIREFOX UI">
+  <parameter name="browser" value="firefox_ui"/>
+    <classes>
+      <class name="com.nopcommerce.user.Level_04_Register_Login_Multiple_Browser"/>
+    </classes>
+  </test>
+  
+    <test name="Run on FIREFOX HEADLESS">
+  <parameter name="browser" value="firefox_headless"/>
+    <classes>
+      <class name="com.nopcommerce.user.Level_04_Register_Login_Multiple_Browser"/>
+    </classes>
+  </test>
+  
+  <test name="Run on CHROME UI">
+  <parameter name="browser" value="chrome_ui"/>
+    <classes>
+      <class name="com.nopcommerce.user.Level_04_Register_Login_Multiple_Browser"/>
+    </classes>
+  </test> 
+  
+  <test name="Run on CHROME HEADLESS">
+  <parameter name="browser" value="chrome_headless"/>
+    <classes>
+      <class name="com.nopcommerce.user.Level_04_Register_Login_Multiple_Browser"/>
+    </classes>
+  </test> 
+  
+  <test name="Run on EDGE CHROMIUM">
+  <parameter name="browser" value="edge_chromium"/>
+    <classes>
+      <class name="com.nopcommerce.user.Level_04_Register_Login_Multiple_Browser"/>
+    </classes>
+  </test>  -->
+  
+</suite>
