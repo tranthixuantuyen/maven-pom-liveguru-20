@@ -2,12 +2,12 @@ package pageObjects;
 
 import org.openqa.selenium.WebDriver;
 
-import commons.AbstractPage;
+import commons.BasePage;
 import pageUIs.UserLoginPageUI;
 
-public class UserLoginPO extends AbstractPage{
+public class UserLoginPageObject extends BasePage{
 	WebDriver driver;
-	public UserLoginPO(WebDriver driver) {
+	public UserLoginPageObject(WebDriver driver) {
 		this.driver = driver;
 	}
 
@@ -23,11 +23,24 @@ public class UserLoginPO extends AbstractPage{
 		
 	}
 
-	public UserHomePO clickToLoginButton() {
+	public UserHomePageObject clickToLoginButton() {
 		waitForElementClickable(driver, UserLoginPageUI.LOGIN_BUTTON);
 		clickToElement(driver, UserLoginPageUI.LOGIN_BUTTON);
 		return PageGeneratorManager.getHomePage(driver);
 		
 	}
+
+	public String getErrorMessageAtEmailTextbox() {
+		waitForElementVisible(driver, UserLoginPageUI.EMAIL_ERROR_MESSAGE);
+		return getElementText(driver, UserLoginPageUI.EMAIL_ERROR_MESSAGE);
+
+	}
+
+	public String getErrorMessageUnsuccessful() {
+		waitForElementVisible(driver, UserLoginPageUI.UNSUCCESSFUL_ERROR_MESSAGE);
+		return getElementText(driver, UserLoginPageUI.UNSUCCESSFUL_ERROR_MESSAGE);
+
+	}
+	
 
 }

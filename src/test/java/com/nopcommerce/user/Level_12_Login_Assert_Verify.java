@@ -3,9 +3,9 @@ package com.nopcommerce.user;
 import org.testng.annotations.Test;
 
 import commons.AbstractTest;
-import pageObjects.UserHomePO;
-import pageObjects.UserLoginPO;
-import pageObjects.UserRegisterPO;
+import pageObjects.UserHomePageObject;
+import pageObjects.UserLoginPageObject;
+import pageObjects.UserRegisterPageObject;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
@@ -21,9 +21,9 @@ public class Level_12_Login_Assert_Verify extends AbstractTest{
 	String firstName, email, lastName, companyName, password;
 	String day, month, year;
 	
-	UserHomePO homePage;
-	UserRegisterPO registerPage;
-	UserLoginPO loginPage;
+	UserHomePageObject homePage;
+	UserRegisterPageObject registerPage;
+	UserLoginPageObject loginPage;
 	
 	@Parameters({"browser", "url"})
 	@BeforeTest

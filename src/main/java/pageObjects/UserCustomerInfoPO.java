@@ -2,10 +2,10 @@ package pageObjects;
 
 import org.openqa.selenium.WebDriver;
 
-import commons.AbstractPage;
+import commons.BasePage;
 import pageUIs.UserCustomerInforPageUI;
 
-public class UserCustomerInfoPO extends AbstractPage{
+public class UserCustomerInfoPO extends BasePage{
 	WebDriver driver;
 	public UserCustomerInfoPO(WebDriver driver) {
 		this.driver = driver;

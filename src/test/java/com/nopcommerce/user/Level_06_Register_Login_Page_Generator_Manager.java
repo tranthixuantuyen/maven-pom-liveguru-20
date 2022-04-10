@@ -4,9 +4,9 @@ import org.testng.annotations.Test;
 
 import commons.AbstractTest;
 import pageObjects.UserCustomerInfoPO;
-import pageObjects.UserHomePO;
-import pageObjects.UserLoginPO;
-import pageObjects.UserRegisterPO;
+import pageObjects.UserHomePageObject;
+import pageObjects.UserLoginPageObject;
+import pageObjects.UserRegisterPageObject;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
@@ -22,9 +22,9 @@ public class Level_06_Register_Login_Page_Generator_Manager extends AbstractTest
 	String firstName, email, lastName, companyName, password;
 	String day, month, year;
 	
-	UserHomePO homePage;
-	UserRegisterPO registerPage;
-	UserLoginPO loginPage;
+	UserHomePageObject homePage;
+	UserRegisterPageObject registerPage;
+	UserLoginPageObject loginPage;
 	UserCustomerInfoPO customerInforPage;
 	
 	@Parameters("browser")
@@ -44,7 +44,7 @@ public class Level_06_Register_Login_Page_Generator_Manager extends AbstractTest
 
 	@Test
 	public void TC_01_RegisterToSystem() {
-		homePage = new UserHomePO(driver);
+		homePage = new UserHomePageObject(driver);
 		
 		registerPage = homePage.clickToRegisterLink();	
 		

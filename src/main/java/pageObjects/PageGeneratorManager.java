@@ -4,14 +4,14 @@ import org.openqa.selenium.WebDriver;
 
 public class PageGeneratorManager {
 	
-	public static UserLoginPO getLoginPage(WebDriver driver) {
-		return new UserLoginPO(driver);
+	public static UserLoginPageObject getLoginPage(WebDriver driver) {
+		return new UserLoginPageObject(driver);
 	}
-	public static UserHomePO getHomePage(WebDriver driver) {
-		return new UserHomePO(driver);
+	public static UserHomePageObject getHomePage(WebDriver driver) {
+		return new UserHomePageObject(driver);
 	}
-	public static UserRegisterPO getRegisterPage(WebDriver driver) {
-		return new UserRegisterPO(driver);
+	public static UserRegisterPageObject getRegisterPage(WebDriver driver) {
+		return new UserRegisterPageObject(driver);
 	}
 	public static UserCustomerInfoPO getCustomerInfoPage(WebDriver driver) {
 		return new UserCustomerInfoPO(driver);

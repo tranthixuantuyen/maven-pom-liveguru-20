@@ -4,9 +4,9 @@ import org.testng.annotations.Test;
 
 import commons.AbstractTest;
 import pageObjects.UserCustomerInfoPO;
-import pageObjects.UserHomePO;
-import pageObjects.UserLoginPO;
-import pageObjects.UserRegisterPO;
+import pageObjects.UserHomePageObject;
+import pageObjects.UserLoginPageObject;
+import pageObjects.UserRegisterPageObject;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
@@ -25,9 +25,9 @@ public class Level_05_Register_Login_Page_Factory extends AbstractTest{
 	String firstName, email, lastName, companyName, password;
 	String day, month, year;
 	
-	UserHomePO homePage;
-	UserRegisterPO registerPage;
-	UserLoginPO loginPage;
+	UserHomePageObject homePage;
+	UserRegisterPageObject registerPage;
+	UserLoginPageObject loginPage;
 	UserCustomerInfoPO customerInforPage;
 	
 	@Parameters("browser")
@@ -47,9 +47,9 @@ public class Level_05_Register_Login_Page_Factory extends AbstractTest{
 
 	@Test
 	public void TC_01_RegisterToSystem() {
-		homePage = new UserHomePO(driver);
+		homePage = new UserHomePageObject(driver);
 		homePage.clickToRegisterLink();	
-		registerPage = new UserRegisterPO(driver);
+		registerPage = new UserRegisterPageObject(driver);
 		
 		registerPage.clickToGenderMaleRadioButton();
 		
@@ -73,19 +73,19 @@ public class Level_05_Register_Login_Page_Factory extends AbstractTest{
 		Assert.assertEquals(registerPage.getRegisterSuccessMessage(), "Your registration completed");
 		
 		registerPage.clickToLogoutLink();
-		homePage = new UserHomePO(driver);
+		homePage = new UserHomePageObject(driver);
 	}
 
 	@Test
 	public void TC_02_LoginToSystem() {
 		homePage.clickToLoginLink();
-		loginPage = new UserLoginPO(driver);
+		loginPage = new UserLoginPageObject(driver);
 		
 		loginPage.inputToEmailTextbox(email);
 		loginPage.inputToPasswordTextbox(password);
 		loginPage.clickToLoginButton();
 		
-		homePage = new UserHomePO(driver);
+		homePage = new UserHomePageObject(driver);
 		Assert.assertTrue(homePage.isMyAccountLinkDisplayed());
 		Assert.assertTrue(homePage.isLogoutLinkDisplayed());
 	}

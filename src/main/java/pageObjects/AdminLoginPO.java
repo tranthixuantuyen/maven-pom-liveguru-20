@@ -2,10 +2,10 @@ package pageObjects;
 
 import org.openqa.selenium.WebDriver;
 
-import commons.AbstractPage;
+import commons.BasePage;
 import pageUIs.AdminLoginPageUI;
 
-public class AdminLoginPO extends AbstractPage{
+public class AdminLoginPO extends BasePage{
 	WebDriver driver;
 	
 	public AdminLoginPO(WebDriver driver) {

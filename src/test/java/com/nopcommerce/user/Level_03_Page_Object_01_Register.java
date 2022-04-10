@@ -2,9 +2,7 @@ package com.nopcommerce.user;
 
 import org.testng.annotations.Test;
 
-import pageObjects.UserCustomerInfoPO;
 import pageObjects.UserHomePageObject;
-import pageObjects.UserLoginPageObject;
 import pageObjects.UserRegisterPageObject;
 
 import org.testng.annotations.BeforeTest;
@@ -14,16 +12,14 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 
-public class Level_03_Register_Login_Page_Object {
-	String projectLocaion = System.getProperty("user.dir");
+public class Level_03_Page_Object_01_Register {
 	private WebDriver driver;
-	
-	private String firstName, email, lastName, companyName, password;
+	private String firstName, email, lastName, password;
 	String day, month, year;
+	String projectLocaion = System.getProperty("user.dir");
 
 	@BeforeTest
 	public void beforeTest() {
@@ -32,10 +28,12 @@ public class Level_03_Register_Login_Page_Object {
 				
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.get("https://demo.nopcommerce.com/");
+		
+		homePage = new UserHomePageObject(driver);
+		registerPage = new UserRegisterPageObject(driver);
  
 		firstName = "Tran";
 		lastName = "Tuyen";
-		companyName = "Demo";
 		email = "tuyen" + randomNumber() + "@hotmail.com";
 		password = "123456";
 		day = "12";
@@ -44,10 +42,11 @@ public class Level_03_Register_Login_Page_Object {
 	}
 	
 	@Test
-	public void TC_01_Empty_Data() {
-		homePage = new UserHomePageObject(driver);
+	public void Register_01_Empty_Data() {;
 		System.out.println("Home Page - Step 01: click to Register link");
 		homePage.clickToRegisterLink();
+		
+		registerPage = new UserRegisterPageObject(driver);
 
 		System.out.println("Register Page - Step 02: click to Register button");
 		registerPage.clickToRegisterButton();
@@ -61,14 +60,16 @@ public class Level_03_Register_Login_Page_Object {
 	}
 
 	@Test
-	public void TC_02_Register_Invalid_Email() {
+	public void Register_02_Register_Invalid_Email() {
 		System.out.println("Home Page - Step 01: click to Register link");
 		homePage.clickToRegisterLink();
+		
+		registerPage = new UserRegisterPageObject(driver);
 
 		System.out.println("Register Page - Step 02: input to required fields");
 		registerPage.inputToFirstNameTextbox(firstName);
 		registerPage.inputToLastNameTextbox(lastName);
-		registerPage.inputToEmailTextbox(email);
+		registerPage.inputToEmailTextbox("123@$%^");
 		registerPage.inputToPasswordTextbox(password);
 		registerPage.inputToConfirmPasswordTextbox(password);
 
@@ -80,9 +81,11 @@ public class Level_03_Register_Login_Page_Object {
 	}
 
 	@Test
-	public void TC_03_Register_Success() {
+	public void Register_03_Register_Success() {
 		System.out.println("Home Page - Step 01: click to Register link");
 		homePage.clickToRegisterLink();
+		
+		registerPage = new UserRegisterPageObject(driver);
 
 		System.out.println("Register Page - Step 02: input to required fields");
 		registerPage.inputToFirstNameTextbox(firstName);
@@ -103,9 +106,11 @@ public class Level_03_Register_Login_Page_Object {
 	}
 
 	@Test
-	public void TC_04_Register_Existing_Email() {
+	public void Register_04_Register_Existing_Email() {
 		System.out.println("Home Page - Step 01: click to Register link");
 		homePage.clickToRegisterLink();
+		
+		registerPage = new UserRegisterPageObject(driver);
 
 		System.out.println("Register Page - Step 02: input to required fields");
 		registerPage.inputToFirstNameTextbox(firstName);
@@ -118,19 +123,21 @@ public class Level_03_Register_Login_Page_Object {
 		registerPage.clickToRegisterButton();
 
 		System.out.println("Register Page - Step 04: Verify error message displayed");
-		Assert.assertEquals(registerPage.getErrorExistingEmailMessage(),"The specified email already exits");
+		Assert.assertEquals(registerPage.getErrorExistingEmailMessage(),"The specified email already exists");
 	}
 	@Test
-	public void TC_05_Register_Password_Less_Than_6_Chars() {
+	public void Register_05_Register_Password_Less_Than_6_Chars() {
 		System.out.println("Home Page - Step 01: click to Register link");
 		homePage.clickToRegisterLink();
+		
+		registerPage = new UserRegisterPageObject(driver);
 
 		System.out.println("Register Page - Step 02: input to required fields");
 		registerPage.inputToFirstNameTextbox(firstName);
 		registerPage.inputToLastNameTextbox(lastName);
 		registerPage.inputToEmailTextbox(email);
-		registerPage.inputToPasswordTextbox(password);
-		registerPage.inputToConfirmPasswordTextbox(password);
+		registerPage.inputToPasswordTextbox("123");
+		registerPage.inputToConfirmPasswordTextbox("123");
 
 		System.out.println("Register Page - Step 03: click to Register button");
 		registerPage.clickToRegisterButton();
@@ -139,82 +146,24 @@ public class Level_03_Register_Login_Page_Object {
 		Assert.assertEquals(registerPage.getErrorMessageAtPasswordTextbox(),"Password must meet the following rules:\nmust have at least 6 characters");
 	}
 	@Test
-	public void TC_06_Register_Invalid_Confirm_Password() {
+	public void Register_06_Register_Invalid_Confirm_Password() {
 		System.out.println("Home Page - Step 01: click to Register link");
 		homePage.clickToRegisterLink();
+		
+		registerPage = new UserRegisterPageObject(driver);
 
 		System.out.println("Register Page - Step 02: input to required fields");
 		registerPage.inputToFirstNameTextbox(firstName);
 		registerPage.inputToLastNameTextbox(lastName);
 		registerPage.inputToEmailTextbox(email);
-		registerPage.inputToPasswordTextbox(password);
-		registerPage.inputToConfirmPasswordTextbox(password);
+		registerPage.inputToPasswordTextbox("123456");
+		registerPage.inputToConfirmPasswordTextbox("654321");
 
 		System.out.println("Register Page - Step 03: click to Register button");
 		registerPage.clickToRegisterButton();
 
 		System.out.println("Register Page - Step 04: Verify error message displayed");
 		Assert.assertEquals(registerPage.getErrorMessageAtConfirmPasswordTextbox(),"The password and confirmation password do not match.");
-	}
-
-	@Test
-	public void TC_01_RegisterToSystem() {
-		homePage = new UserHomePageObject(driver);
-		homePage.clickToRegisterLink();	
-		registerPage = new UserRegisterPageObject(driver);
-		
-		registerPage.clickToGenderMaleRadioButton();
-		
-		registerPage.inputToFirstNameTextbox(firstName);
-		
-		registerPage.inputToLastNameTextbox(lastName);
-		
-		registerPage.selectDayDropdown(day);
-		
-		registerPage.selectMonthDropdown(month);
-		
-		registerPage.selectYearDropdown(year);
-		
-		registerPage.inputToEmailTextbox(email);
-		registerPage.inputToCompanyTextbox(companyName);
-		registerPage.inputToPasswordTextbox(password);
-		registerPage.inputToConfirmPasswordTextbox(password);
-		
-		registerPage.clickToRegisterButton();
-		
-		Assert.assertEquals(registerPage.getRegisterSuccessMessage(), "Your registration completed");
-		
-		registerPage.clickToLogoutLink();
-		homePage = new UserHomePageObject(driver);
-	}
-
-	@Test
-	public void TC_02_LoginToSystem() {
-		homePage.clickToLoginLink();
-		loginPage = new UserLoginPageObject(driver);
-		
-		loginPage.inputToEmailTextbox(email);
-		loginPage.inputToPasswordTextbox(password);
-		loginPage.clickToLoginButton();
-		
-		homePage = new UserHomePageObject(driver);
-		Assert.assertTrue(homePage.isMyAccountLinkDisplayed());
-		Assert.assertTrue(homePage.isLogoutLinkDisplayed());
-	}
-
-	@Test
-	public void TC_03_ViewMyAccount() {
-		homePage.clickToMyAccountLink();
-		customerInforPage = new UserCustomerInfoPO(driver);
-		
-		Assert.assertTrue(customerInforPage.isGenderMaleRadioButtonSelected());
-		Assert.assertEquals(customerInforPage.getFirstNameTextboxValue(),firstName);
-		Assert.assertEquals(customerInforPage.getLastNameTextboxValue(),lastName);
-		Assert.assertEquals(customerInforPage.getSelectedTextDayDropDown(),day);
-		Assert.assertEquals(customerInforPage.getSelectedTextMonthDropDown(),month);
-		Assert.assertEquals(customerInforPage.getSelectedTextYearDropDown(),year);
-		Assert.assertEquals(customerInforPage.getEmailTextboxValue(),email);
-		Assert.assertEquals(customerInforPage.getCompanyTextboxValue(),companyName);
 	}
 
 	@AfterTest
@@ -227,8 +176,6 @@ public class Level_03_Register_Login_Page_Object {
 		return rand.nextInt(99999);
 	}
 	
-	UserHomePageObject homePage;
-	UserRegisterPageObject registerPage;
-	UserLoginPageObject loginPage;
-	UserCustomerInfoPO customerInforPage;
+	private UserHomePageObject homePage;
+	private UserRegisterPageObject registerPage;
 }

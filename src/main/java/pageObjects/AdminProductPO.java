@@ -5,10 +5,10 @@ import java.util.List;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import commons.AbstractPage;
+import commons.BasePage;
 import pageUIs.AdminProductPageUI;
 
-public class AdminProductPO extends AbstractPage{
+public class AdminProductPO extends BasePage{
 	WebDriver driver;
 	
 	public AdminProductPO(WebDriver driver) {

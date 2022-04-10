@@ -2,10 +2,10 @@ package pageObjects;
 
 import org.openqa.selenium.WebDriver;
 
-import commons.AbstractPage;
+import commons.BasePage;
 import pageUIs.AdminDashboardPageUI;
 
-public class AdminDashboardPO extends AbstractPage {
+public class AdminDashboardPO extends BasePage {
 	WebDriver driver;
 	
 	public AdminDashboardPO(WebDriver driver) {
