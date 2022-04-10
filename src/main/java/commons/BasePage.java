@@ -4,12 +4,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.Color;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -21,7 +19,12 @@ import pageObjects.UserOrdersPO;
 import pageObjects.PageGeneratorManager;
 import pageUIs.AbstractPageUI;
 
-public class AbstractPage {
+public class BasePage {
+	
+	public static BasePage getBasePageObject() {
+		return new BasePage();
+		
+	}
 
 	public void openUrl(WebDriver driver, String url) {
 		driver.get(url);
@@ -51,43 +54,42 @@ public class AbstractPage {
 		driver.navigate().refresh();
 	}
 
+	public Alert waitForAlertPresence(WebDriver driver) {
+		WebDriverWait explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
+		return explicitWait.until(ExpectedConditions.alertIsPresent());
+	}
+
 	public void acceptAlert(WebDriver driver) {
-		driver.switchTo().alert().accept();
+		waitForAlertPresence(driver).accept();
 	}
 
 	public void cancelAlert(WebDriver driver) {
-		driver.switchTo().alert().dismiss();
+		waitForAlertPresence(driver).dismiss();
 	}
 
 	public String getTextAlert(WebDriver driver) {
-		return driver.switchTo().alert().getText();
+		return waitForAlertPresence(driver).getText();
 	}
 
-	public void setTextAlert(WebDriver driver, String value) {
-		driver.switchTo().alert().sendKeys(value);
+	public void sendkeyToAlert(WebDriver driver, String value) {
+
+		waitForAlertPresence(driver).sendKeys(value);
 	}
 
-	public void waitAlertPresence(WebDriver driver) {
-		WebDriverWait explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
-		explicitWait.until(ExpectedConditions.alertIsPresent());
-	}
-
-	public void switchtoWindowByID(WebDriver driver, String parentID) {
+	public void switchToWindowByID(WebDriver driver, String parentID) {
 		Set<String> allWindows = driver.getWindowHandles();
-
-		for (String runWindown : allWindows) {
-			if (!runWindown.equals(parentID)) {
-				driver.switchTo().window(runWindown);
+		for (String id : allWindows) {
+			if (!id.equals(parentID)) {
+				driver.switchTo().window(id);
 				break;
 			}
 		}
 	}
 
-	public void switchtoWindowByTitle(WebDriver driver, String tabTitle) {
+	public void switchToWindowByTitle(WebDriver driver, String tabTitle) {
 		Set<String> allWindows = driver.getWindowHandles();
-
-		for (String runWindowns : allWindows) {
-			driver.switchTo().window(runWindowns);
+		for (String id : allWindows) {
+			driver.switchTo().window(id);
 			String currentPageTitle = driver.getTitle();
 			if (currentPageTitle.equals(tabTitle)) {
 				break;
@@ -97,25 +99,25 @@ public class AbstractPage {
 
 	public void closeAllTabWithoutParent(WebDriver driver, String parentID) {
 		Set<String> allWindows = driver.getWindowHandles();
-
-		for (String runWindowns : allWindows) {
-			if (!runWindowns.equals(parentID)) {
-				driver.switchTo().window(runWindowns);
+		for (String id : allWindows) {
+			if (!id.equals(parentID)) {
+				driver.switchTo().window(id);
 				driver.close();
 			}
 			driver.switchTo().window(parentID);
 		}
 	}
 
-	public WebElement getElement(WebDriver driver, String locator) {
+	private WebElement getElement(WebDriver driver, String locator) {
+
 		return driver.findElement(getByXpath(locator));
 	}
 
-	public List<WebElement> getElements(WebDriver driver, String locator) {
+	private List<WebElement> getElements(WebDriver driver, String locator) {
 		return driver.findElements(getByXpath(locator));
 	}
 
-	public By getByXpath(String locator) {
+	private By getByXpath(String locator) {
 		return By.xpath(locator);
 	}
 
@@ -141,40 +143,37 @@ public class AbstractPage {
 		element.sendKeys(value);
 	}
 
-	public void selectItemInDropdown(WebDriver driver, String locator, String itemValue) {
-		element = getElement(driver, locator);
-		select = new Select(element);
-		select.selectByVisibleText(itemValue);
+	public void selectItemInDropdown(WebDriver driver, String locator, String textItem) {
+		select = new Select(getElement(driver, locator));
+		select.selectByVisibleText(textItem);
+	}
+
+	public void selectItemInDefaultDropdown(WebDriver driver, String locator, String textItem) {
+		select = new Select(getElement(driver, locator));
+		select.selectByValue(textItem);
 	}
 
 	public String getFirstSelectedTextInDropdown(WebDriver driver, String locator) {
-		element = getElement(driver, locator);
-		select = new Select(element);
+		select = new Select(getElement(driver, locator));
 		return select.getFirstSelectedOption().getText();
 	}
 
 	public boolean isDropdownMultiple(WebDriver driver, String locator) {
-		element = getElement(driver, locator);
-		select = new Select(element);
+		select = new Select(getElement(driver, locator));
 		return select.isMultiple();
 	}
 
-	public void selectItemCustomDropDown(WebDriver driver, String parentLocator, String childItemLocator,
-			String expectedTextItem) {
+	public void selectItemCustomDropDown(WebDriver driver, String parentLocator, String childItemLocator, String expectedTextItem) {
 		getElement(driver, parentLocator).click();
+		sleepInSecond(1);
 		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
-		explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(childItemLocator)));
-
-		elements = getElements(driver, childItemLocator);
-
-		for (WebElement item : elements) {
-			System.out.println("Text of item = " + item.getText());
+		List<WebElement> allItems = explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(getByXpath(childItemLocator)));
+		for (WebElement item : allItems) {
 			if (item.getText().trim().equals(expectedTextItem)) {
 				JavascriptExecutor jsExcutor = (JavascriptExecutor) driver;
 				jsExcutor.executeScript("arguments[0].scrollIntoView(true);", item);
 				sleepInSecond(1);
 				item.click();
-				sleepInSecond(1);
 				break;
 			}
 		}
@@ -197,17 +196,35 @@ public class AbstractPage {
 	}
 
 	public String getElementAttribute(WebDriver driver, String locator, String attributeName) {
-		element = getElement(driver, locator);
-		return element.getAttribute(attributeName);
+		return getElement(driver, locator).getAttribute(attributeName);
 	}
 
 	public String getElementText(WebDriver driver, String locator) {
-		element = getElement(driver, locator);
-		return element.getText();
+		return getElement(driver, locator).getText();
+	}
+	public String geCssValue(WebDriver driver, String locator, String propertyName) {
+		return getElement(driver, locator).getCssValue(propertyName);
+	}
+	public String getHexaColorFromRGBA(String rgbaValue) {
+		return Color.fromString(rgbaValue).asHex();
 	}
 
-	public int countElementSize(WebDriver driver, String locator) {
+	public int getElementSize(WebDriver driver, String locator) {
 		return getElements(driver, locator).size();
+	}
+
+	public void checkToDefaultCheckbox(WebDriver driver, String locator) {
+		element = getElement(driver, locator);
+		if (!element.isSelected()) {
+			element.click();
+		}
+	}
+
+	public void uncheckToDefaultCheckbox(WebDriver driver, String locator) {
+		element = getElement(driver, locator);
+		if (element.isSelected()) {
+			element.click();
+		}
 	}
 
 	public void checkToCheckbox(WebDriver driver, String locator) {
@@ -263,7 +280,7 @@ public class AbstractPage {
 		return getElement(driver, locator).isSelected();
 	}
 
-	public void switchToFrame(WebDriver driver, String locator) {
+	public void switchToIFrame(WebDriver driver, String locator) {
 		driver.switchTo().frame(getElement(driver, locator));
 	}
 
@@ -354,6 +371,31 @@ public class AbstractPage {
 		jsExecutor.executeScript("arguments[0].removeAttribute('" + attributeRemove + "');",
 				getElement(driver, locator));
 	}
+	
+	public boolean areJQueryAndJSLoadedSuccess(WebDriver driver) {
+		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
+		jsExecutor = (JavascriptExecutor) driver;
+
+		ExpectedCondition<Boolean> jQueryLoad = new ExpectedCondition<Boolean>() {
+			@Override
+			public Boolean apply(WebDriver driver) {
+				try {
+					return ((Long) jsExecutor.executeScript("return jQuery.active") == 0);
+				} catch (Exception e) {
+					return true;
+				}
+			}
+		};
+
+		ExpectedCondition<Boolean> jsLoad = new ExpectedCondition<Boolean>() {
+			@Override
+			public Boolean apply(WebDriver driver) {
+				return jsExecutor.executeScript("return document.readyState").toString().equals("complete");
+			}
+		};
+
+		return explicitWait.until(jQueryLoad) && explicitWait.until(jsLoad);
+	}
 
 	public String getElementValidationMessage(WebDriver driver, String locator) {
 		jsExecutor = (JavascriptExecutor) driver;
@@ -363,10 +405,12 @@ public class AbstractPage {
 	
 	public boolean isImageLoaded(WebDriver driver, String locator) {
 		jsExecutor = (JavascriptExecutor) driver;
-		boolean status = (boolean) jsExecutor.executeScript(
-				"return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0",
-				getElement(driver, locator));
-		return status;
+		boolean status = (boolean) jsExecutor.executeScript("return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0", getElement(driver, locator));
+		if (status) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public String getTitleOfPage(WebDriver driver) {
@@ -378,11 +422,15 @@ public class AbstractPage {
 		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
 		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(getByXpath(locator)));
 	}
+	
+	public void waitForAllElementVisible(WebDriver driver, String locator) {
+		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
+		explicitWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(getByXpath(locator)));
+	}
 
 	public void waitForElementVisible(WebDriver driver, String locator, String... values) {
 		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
-		explicitWait
-				.until(ExpectedConditions.visibilityOfElementLocated(getByXpath(getDynamicLocator(locator, values))));
+		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(getByXpath(getDynamicLocator(locator, values))));
 	}
 
 	public void waitForElementInvisible(WebDriver driver, String locator) {
@@ -391,11 +439,15 @@ public class AbstractPage {
 		explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(getByXpath(locator)));
 		overideImplicitWait(driver, GlobalConstants.LONG_TIMEOUT);
 	}
+	
+	public void waitForAllElementInvisible(WebDriver driver, String locator) {
+		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
+		explicitWait.until(ExpectedConditions.invisibilityOfAllElements(getElements(driver, locator)));
+	}
 
 	public void waitForElementInvisible(WebDriver driver, String locator, String... values) {
 		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
-		explicitWait
-				.until(ExpectedConditions.invisibilityOfElementLocated(getByXpath(getDynamicLocator(locator, values))));
+		explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(getByXpath(getDynamicLocator(locator, values))));
 	}
 
 	public void waitToElementPresence(WebDriver driver, String locator) {
@@ -423,7 +475,6 @@ public class AbstractPage {
 		explicitWait.until(ExpectedConditions.elementToBeClickable(getByXpath(getDynamicLocator(locator, values))));
 	}
 
-	// 4 haÌ€m mÆ¡Ì‰ page
 	public UserOrdersPO openOrderPage(WebDriver driver) {
 		waitForElementClickable(driver, AbstractPageUI.MY_ORDER_LINK);
 		clickToElement(driver, AbstractPageUI.MY_ORDER_LINK);
@@ -448,8 +499,7 @@ public class AbstractPage {
 		return PageGeneratorManager.getAddressesPage(driver);
 	}
 
-	// 10-15 PAGES
-	public AbstractPage openLinkByPageName(WebDriver driver, String pageName) {
+	public BasePage openLinkByPageName(WebDriver driver, String pageName) {
 		waitForElementClickable(driver, AbstractPageUI.DYNAMIC_LINK, pageName);
 		clickToElement(driver, AbstractPageUI.DYNAMIC_LINK, pageName);
 		switch (pageName) {
@@ -464,7 +514,6 @@ public class AbstractPage {
 		}
 	}
 
-	// >10 PAGES
 	public void openLinkWithPageName(WebDriver driver, String pageName) {
 		waitForElementClickable(driver, AbstractPageUI.DYNAMIC_LINK, pageName);
 		clickToElement(driver, AbstractPageUI.DYNAMIC_LINK, pageName);
