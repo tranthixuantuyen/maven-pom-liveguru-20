@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class CustomerInfoPageObject extends AbstractPage{
+public class CustomerInfoPageObject extends BasePageFactory{
 	WebDriver driver;
 	public CustomerInfoPageObject(WebDriver driver) {
 		this.driver = driver;
@@ -21,14 +21,6 @@ public class CustomerInfoPageObject extends AbstractPage{
 	@FindBy(id="LastName")
 	WebElement lastnameTextbox;
 	
-	@FindBy(xpath="//select[@name='DateOfBirthDay']")
-	WebElement dayDropdown;
-	
-	@FindBy(xpath="//select[@name='DateOfBirthMonth']")
-	WebElement monthDropdown;
-	
-	@FindBy(xpath="//select[@name='DateOfBirthYear']")
-	WebElement yearDropdown;
 	
 	@FindBy(id="Email")
 	WebElement emailTextbox;
@@ -36,10 +28,7 @@ public class CustomerInfoPageObject extends AbstractPage{
 	@FindBy(id="Company")
 	WebElement companyTextbox;
 	
-	public boolean isGenderMaleRadioButtonSelected() {
-		waitForElementVisible(driver, genderMaleRadio);
-		return isElementSelected(driver, genderMaleRadio);
-	}
+
 
 	public String getFirstNameTextboxValue() {
 		waitForElementVisible(driver, firstNameTextbox);
@@ -49,21 +38,6 @@ public class CustomerInfoPageObject extends AbstractPage{
 	public String getLastNameTextboxValue() {
 		waitForElementVisible(driver, lastnameTextbox);
 		return getElementAttribute(driver, lastnameTextbox, "value");
-	}
-
-	public String getSelectedTextDayDropDown() {
-		waitForElementVisible(driver, dayDropdown);
-		return getFirstSelectedTextInDropdown(driver, dayDropdown);
-	}
-
-	public String getSelectedTextMonthDropDown() {
-		waitForElementVisible(driver, monthDropdown);
-		return getFirstSelectedTextInDropdown(driver, monthDropdown);
-	}
-
-	public String getSelectedTextYearDropDown() {
-		waitForElementVisible(driver, yearDropdown);
-		return getFirstSelectedTextInDropdown(driver, yearDropdown);
 	}
 
 	public String getEmailTextboxValue() {
