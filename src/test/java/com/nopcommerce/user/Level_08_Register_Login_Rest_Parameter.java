@@ -3,14 +3,14 @@ package com.nopcommerce.user;
 import org.testng.annotations.Test;
 
 import commons.AbstractTest;
-import pageObjects.UserAddressesPO;
-import pageObjects.UserCustomerInfoPO;
-import pageObjects.UserHomePageObject;
-import pageObjects.UserLoginPageObject;
-import pageObjects.UserMyProductReviewPO;
-import pageObjects.UserOrdersPO;
-import pageObjects.PageGeneratorManager;
-import pageObjects.UserRegisterPageObject;
+import commons.PageGeneratorManager;
+import pageObjects.user.UserAddressesPageObject;
+import pageObjects.user.UserCustomerInforPageObject;
+import pageObjects.user.UserHomePageObject;
+import pageObjects.user.UserLoginPageObject;
+import pageObjects.user.UserMyProductReviewPageObject;
+import pageObjects.user.UserOrdersPO;
+import pageObjects.user.UserRegisterPageObject;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
@@ -29,10 +29,10 @@ public class Level_08_Register_Login_Rest_Parameter extends AbstractTest{
 	UserHomePageObject homePage;
 	UserRegisterPageObject registerPage;
 	UserLoginPageObject loginPage;
-	UserCustomerInfoPO customerInforPage;
-	UserAddressesPO addressesPage;
+	UserCustomerInforPageObject customerInforPage;
+	UserAddressesPageObject addressesPage;
 	UserOrdersPO orderPage;
-	UserMyProductReviewPO myProductPage;
+	UserMyProductReviewPageObject myProductPage;
 	
 	@Parameters("browser")
 	@BeforeTest
@@ -52,7 +52,7 @@ public class Level_08_Register_Login_Rest_Parameter extends AbstractTest{
 	@Test
 	public void TC_01_RegisterToSystem() {
 		
-		homePage = PageGeneratorManager.getHomePage(driver);
+		homePage = PageGeneratorManager.getUserHomePage(driver);
 		
 		registerPage = homePage.clickToRegisterLink();	
 		
@@ -110,17 +110,17 @@ public class Level_08_Register_Login_Rest_Parameter extends AbstractTest{
 	// 10-15 PAGES
 	public void TC_04_Switch_Page_Solution_01() {
 
-		addressesPage = (UserAddressesPO) customerInforPage.openLinkByPageName(driver, "Addresses");
+		addressesPage = (UserAddressesPageObject) customerInforPage.openLinkByPageName(driver, "Addresses");
 		
-		customerInforPage = (UserCustomerInfoPO) addressesPage.openLinkByPageName(driver,"Customer info");
+		customerInforPage = (UserCustomerInforPageObject) addressesPage.openLinkByPageName(driver,"Customer info");
 		
-		myProductPage = (UserMyProductReviewPO) addressesPage.openLinkByPageName(driver,"My product reviews");
+		myProductPage = (UserMyProductReviewPageObject) addressesPage.openLinkByPageName(driver,"My product reviews");
 		
 		orderPage = (UserOrdersPO) myProductPage.openLinkByPageName(driver,"Orders");
 			
-		addressesPage = (UserAddressesPO) orderPage.openLinkByPageName(driver, "Addresses");
+		addressesPage = (UserAddressesPageObject) orderPage.openLinkByPageName(driver, "Addresses");
 		
-		customerInforPage = (UserCustomerInfoPO) addressesPage.openLinkByPageName(driver,"Customer info");
+		customerInforPage = (UserCustomerInforPageObject) addressesPage.openLinkByPageName(driver,"Customer info");
 	}
 	
 	@Test
@@ -129,13 +129,13 @@ public class Level_08_Register_Login_Rest_Parameter extends AbstractTest{
 		
 		// Customer -> Addresses 
 		customerInforPage.openLinkWithPageName(driver, "Addresses");
-		addressesPage = PageGeneratorManager.getAddressesPage(driver);
+		addressesPage = PageGeneratorManager.getUserAddressesPage(driver);
 		
 		addressesPage.openLinkWithPageName(driver, "Customer info");
-		customerInforPage = PageGeneratorManager.getCustomerInfoPage(driver);
+		customerInforPage = PageGeneratorManager.getMyAccountPage(driver);
 		
 		customerInforPage.openLinkWithPageName(driver, "My product reviews");
-		myProductPage = PageGeneratorManager.getMyProductReviewPage(driver);
+		myProductPage = PageGeneratorManager.getUserMyProductReviewPage(driver);
 		
 	}
 

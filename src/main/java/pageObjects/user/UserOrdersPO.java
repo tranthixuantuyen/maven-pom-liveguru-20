@@ -1,11 +1,11 @@
-package pageObjects;
+package pageObjects.user;
 
 import org.openqa.selenium.WebDriver;
 
 import commons.BasePage;
-import pageUIs.UserLoginPageUI;
-import pageUIs.UserMyProductReviewPageUI;
-import pageUIs.UserOrdersPageUI;
+import pageUIs.user.UserLoginPageUI;
+import pageUIs.user.UserMyProductReviewPageUI;
+import pageUIs.user.UserOrdersPageUI;
 
 public class UserOrdersPO extends BasePage{
 	WebDriver driver;

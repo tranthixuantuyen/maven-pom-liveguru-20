@@ -1,4 +1,4 @@
-package pageUIs;
+package pageUIs.admin;
 
 public class AdminProductPageUI {
 	public static final String PAGING_AT_TABLE_BY_INDEX = "//li[contains(@class,'paginate_button ')]/a[text()='%s']";

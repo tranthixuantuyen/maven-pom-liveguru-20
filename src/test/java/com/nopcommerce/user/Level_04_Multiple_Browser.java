@@ -3,14 +3,13 @@ package com.nopcommerce.user;
 import org.testng.annotations.Test;
 
 import commons.BaseTest;
-import pageObjects.UserHomePageObject;
-import pageObjects.UserRegisterPageObject;
+import pageObjects.user.UserHomePageObject;
+import pageObjects.user.UserRegisterPageObject;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;

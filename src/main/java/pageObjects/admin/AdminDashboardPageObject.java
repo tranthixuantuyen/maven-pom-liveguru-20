@@ -1,18 +1,20 @@
-package pageObjects;
+package pageObjects.admin;
 
 import org.openqa.selenium.WebDriver;
 
 import commons.BasePage;
-import pageUIs.AdminDashboardPageUI;
+import commons.PageGeneratorManager;
+import pageUIs.admin.AdminDashboardPageUI;
 
-public class AdminDashboardPO extends BasePage {
+public class AdminDashboardPageObject extends BasePage {
 	WebDriver driver;
 	
-	public AdminDashboardPO(WebDriver driver) {
+	public AdminDashboardPageObject(WebDriver driver) {
 		this.driver = driver;
 	}
+	
 
-	public AdminProductPO openProductPage() {
+	public AdminProductPageObject openProductPage() {
 		
 	waitForElementClickable(driver, AdminDashboardPageUI.CATALOG_LINK_SIDEBAR);
 	clickToElement(driver, AdminDashboardPageUI.CATALOG_LINK_SIDEBAR);
@@ -22,6 +24,12 @@ public class AdminDashboardPO extends BasePage {
 	
 	return PageGeneratorManager.getAdminProductPage(driver);
 		
+	}
+
+
+	public boolean isDashboardHeaderDisplayed() {
+		waitForElementVisible(driver, AdminDashboardPageUI.DASHBOARD_HEADER);
+		return isElementDisplayed(driver, AdminDashboardPageUI.DASHBOARD_HEADER);
 	}
 
 }

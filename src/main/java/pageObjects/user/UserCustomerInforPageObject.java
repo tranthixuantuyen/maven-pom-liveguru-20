@@ -1,13 +1,13 @@
-package pageObjects;
+package pageObjects.user;
 
 import org.openqa.selenium.WebDriver;
 
 import commons.BasePage;
-import pageUIs.UserCustomerInforPageUI;
+import pageUIs.user.UserCustomerInforPageUI;
 
-public class UserCustomerInfoPO extends BasePage{
+public class UserCustomerInforPageObject extends BasePage{
 	WebDriver driver;
-	public UserCustomerInfoPO(WebDriver driver) {
+	public UserCustomerInforPageObject(WebDriver driver) {
 		this.driver = driver;
 	}
 	
@@ -50,6 +50,12 @@ public class UserCustomerInfoPO extends BasePage{
 	public String getCompanyTextboxValue() {
 		waitForElementVisible(driver, UserCustomerInforPageUI.COMPANY_TEXTBOX);
 		return getElementAttribute(driver, UserCustomerInforPageUI.COMPANY_TEXTBOX, "value");
+	}
+
+
+	public boolean isCustomerInforDisplayed() {
+		waitForElementVisible(driver, UserCustomerInforPageUI.CUSTOMER_INFOR_HEADER);
+		return isElementDisplayed(driver, UserCustomerInforPageUI.CUSTOMER_INFOR_HEADER);
 	}
 
 

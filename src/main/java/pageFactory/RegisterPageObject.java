@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import pageUIs.UserRegisterPageUI;
+import pageUIs.user.UserRegisterPageUI;
 
 public class RegisterPageObject extends BasePageFactory{
 	WebDriver driver;

@@ -2,21 +2,23 @@ package com.nopcommerce.user;
 
 import org.testng.annotations.Test;
 
+import commons.BaseTest;
+import commons.PageGeneratorManager;
+import pageObjects.user.UserCustomerInforPageObject;
 import pageObjects.user.UserHomePageObject;
 import pageObjects.user.UserLoginPageObject;
 import pageObjects.user.UserRegisterPageObject;
 
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 
-public class Level_03_Page_Object_02_Login {
+public class Level_06_Page_Genarator_Manager_III extends BaseTest{
 	private WebDriver driver;
 	private String firstName, invalidEmail, notFoundEmail, existingEmail, lastName, password, incorrectPassword;
 	String day, month, year;
@@ -24,17 +26,15 @@ public class Level_03_Page_Object_02_Login {
 	private UserHomePageObject homePage;
 	private UserRegisterPageObject registerPage;
 	private UserLoginPageObject loginPage;
+	private UserCustomerInforPageObject myAccountPage;
+	
 
+	@Parameters("browser")
 	@BeforeTest
-	public void beforeTest() {
-		System.setProperty("webdriver.chrome.driver", projectLocaion + "\\browserDrivers\\chromedriver.exe");
-		driver = new ChromeDriver();
-				
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.get("https://demo.nopcommerce.com/");
+	public void beforeTest(String browserName) {
+		driver = getBrowserDriver(browserName);
 		
-		homePage = new UserHomePageObject(driver);
-		registerPage = new UserRegisterPageObject(driver);
+		homePage = PageGeneratorManager.getUserHomePage(driver);
  
 		firstName = "Tran";
 		lastName = "Tuyen";
@@ -48,9 +48,7 @@ public class Level_03_Page_Object_02_Login {
 		year = "1992";
 		
 		System.out.println("Pre-Condition - Step 01: click to Register link");
-		homePage.clickToRegisterLink();
-		
-		registerPage = new UserRegisterPageObject(driver);
+		registerPage = homePage.clickToRegisterLink();
 
 		System.out.println("Pre-Condition - Step 02: input to required fields");
 		registerPage.inputToFirstNameTextbox(firstName);
@@ -61,23 +59,23 @@ public class Level_03_Page_Object_02_Login {
 
 		System.out.println("Pre-Condition - Step 03: click to Register button");
 		registerPage.clickToRegisterButton();
+		
+		System.out.println("email: " + existingEmail);
 
 		System.out.println("Pre-Condition - Step 04: Verify success message displayed");
 		Assert.assertEquals(registerPage.getRegisterSuccessMessage(),"Your registration completed");
 
 		System.out.println("Pre-Condition - Step 05: Click to logout link");
-		registerPage.clickToLogoutLink();
+		homePage = registerPage.clickToLogoutLink();
 		
-		homePage = new UserHomePageObject(driver);
 	}
 	
 	@Test
 	public void Login_01_Empty_Data() {
-	
-		homePage.clickToLoginLink();
+		System.out.println("Login_01_Empty_Data - Step 01: Click to login link");
+		loginPage = homePage.clickToLoginLink();
 		
-		loginPage = new UserLoginPageObject(driver);
-		
+		System.out.println("Login_01_Empty_Data - Step 02: Click to login button");
 		loginPage.clickToLoginButton();
 		
 		Assert.assertEquals(loginPage.getErrorMessageAtEmailTextbox(), "Please enter your email");
@@ -88,9 +86,7 @@ public class Level_03_Page_Object_02_Login {
 	@Test
 	public void Login_02_Invalid_Email() {
 		
-		homePage.clickToLoginLink();
-		
-		loginPage = new UserLoginPageObject(driver);
+		loginPage = homePage.clickToLoginLink();
 		
 		loginPage.inputToEmailTextbox(invalidEmail);
 		
@@ -102,9 +98,7 @@ public class Level_03_Page_Object_02_Login {
 	@Test
 	public void Login_03_Email_Not_Found() {
 		
-		homePage.clickToLoginLink();
-		
-		loginPage = new UserLoginPageObject(driver);
+		loginPage = homePage.clickToLoginLink();
 		
 		loginPage.inputToEmailTextbox(notFoundEmail);
 		
@@ -117,8 +111,7 @@ public class Level_03_Page_Object_02_Login {
 	@Test
 	public void Login_04_Existing_Email_Empty_Password() {
 		
-		homePage.clickToLoginLink();
-		loginPage = new UserLoginPageObject(driver);
+		loginPage = homePage.clickToLoginLink();
 		
 		loginPage.inputToEmailTextbox(existingEmail);
 		loginPage.inputToPasswordTextbox("");
@@ -132,8 +125,7 @@ public class Level_03_Page_Object_02_Login {
 	@Test
 	public void Login_05_Existing_Email_Incorrect_Password() {
 		
-		homePage.clickToLoginLink();
-		loginPage = new UserLoginPageObject(driver);
+		loginPage = homePage.clickToLoginLink();
 		
 		loginPage.inputToEmailTextbox(existingEmail);
 		loginPage.inputToPasswordTextbox(incorrectPassword);
@@ -146,17 +138,16 @@ public class Level_03_Page_Object_02_Login {
 	@Test
 	public void TC_06_Valid_Email_Password() {
 		
-		homePage.clickToLoginLink();
-		loginPage = new UserLoginPageObject(driver);
+		loginPage = homePage.clickToLoginLink();
 		
 		loginPage.inputToEmailTextbox(existingEmail);
 		loginPage.inputToPasswordTextbox(password);
 		
-		loginPage.clickToLoginButton();
-		
-		homePage = new UserHomePageObject(driver);
+		homePage = loginPage.clickToLoginButton();
 		
 		Assert.assertTrue(homePage.isMyAccountLinkDisplayed());
+		
+		myAccountPage = homePage.clickToMyAccountLink();
 	}
 
 	@AfterTest

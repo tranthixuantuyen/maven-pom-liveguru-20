@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import pageUIs.UserLoginPageUI;
+import pageUIs.user.UserLoginPageUI;
 
 public class LoginPageObject extends BasePageFactory{
 	WebDriver driver;

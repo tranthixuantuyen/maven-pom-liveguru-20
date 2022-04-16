@@ -3,14 +3,14 @@ package com.nopcommerce.user;
 import org.testng.annotations.Test;
 
 import commons.AbstractTest;
-import pageObjects.UserAddressesPO;
-import pageObjects.UserCustomerInfoPO;
-import pageObjects.UserHomePageObject;
-import pageObjects.UserLoginPageObject;
-import pageObjects.UserMyProductReviewPO;
-import pageObjects.UserOrdersPO;
-import pageObjects.PageGeneratorManager;
-import pageObjects.UserRegisterPageObject;
+import commons.PageGeneratorManager;
+import pageObjects.user.UserAddressesPageObject;
+import pageObjects.user.UserCustomerInforPageObject;
+import pageObjects.user.UserHomePageObject;
+import pageObjects.user.UserLoginPageObject;
+import pageObjects.user.UserMyProductReviewPageObject;
+import pageObjects.user.UserOrdersPO;
+import pageObjects.user.UserRegisterPageObject;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
@@ -29,10 +29,10 @@ public class Level_07_Register_Login_Switch_Page_Type extends AbstractTest{
 	UserHomePageObject homePage;
 	UserRegisterPageObject registerPage;
 	UserLoginPageObject loginPage;
-	UserCustomerInfoPO customerInforPage;
-	UserAddressesPO addressesPage;
+	UserCustomerInforPageObject customerInforPage;
+	UserAddressesPageObject addressesPage;
 	UserOrdersPO orderPage;
-	UserMyProductReviewPO myProductPage;
+	UserMyProductReviewPageObject myProductPage;
 	
 	@Parameters("browser")
 	@BeforeTest
@@ -51,7 +51,7 @@ public class Level_07_Register_Login_Switch_Page_Type extends AbstractTest{
 
 	@Test
 	public void TC_01_RegisterToSystem() {
-		homePage = PageGeneratorManager.getHomePage(driver);
+		homePage = PageGeneratorManager.getUserHomePage(driver);
 		
 		registerPage = homePage.clickToRegisterLink();	
 		
@@ -109,7 +109,7 @@ public class Level_07_Register_Login_Switch_Page_Type extends AbstractTest{
 	public void TC_04_Switch_Page() {
 		
 		  // Customer -> Addresses 
-		addressesPage = customerInforPage.openAddressedPage(driver);
+		addressesPage = customerInforPage.openAddressPage(driver);
 		  
 		  //Addresses -> My product review 
 		  myProductPage = addressesPage.openMyProductReviewPage(driver);
@@ -118,7 +118,7 @@ public class Level_07_Register_Login_Switch_Page_Type extends AbstractTest{
 		  orderPage = myProductPage.openOrderPage(driver);
 		  
 		  //Order -> Addresses 
-		  addressesPage = orderPage.openAddressedPage(driver);
+		  addressesPage = orderPage.openAddressPage(driver);
 		  
 		  //Addresses -> Customer info 
 		  customerInforPage = addressesPage.openCustomerInfoPage(driver);

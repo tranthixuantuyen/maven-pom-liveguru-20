@@ -1,4 +1,4 @@
-package pageUIs;
+package pageUIs.user;
 
 public class UserLoginPageUI {
 	public static final String EMAIL_TEXTBOX = "//input[@id='Email']";

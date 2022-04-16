@@ -12,12 +12,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import pageObjects.UserAddressesPO;
-import pageObjects.UserCustomerInfoPO;
-import pageObjects.UserMyProductReviewPO;
-import pageObjects.UserOrdersPO;
-import pageObjects.PageGeneratorManager;
-import pageUIs.AbstractPageUI;
+import pageObjects.admin.AdminLoginPageObject;
+import pageObjects.user.UserAddressesPageObject;
+import pageObjects.user.UserCustomerInforPageObject;
+import pageObjects.user.UserHomePageObject;
+import pageObjects.user.UserMyProductReviewPageObject;
+import pageObjects.user.UserOrdersPO;
+import pageObjects.user.UserRewardPointPageObject;
+import pageUIs.user.BasePageUI;
 
 public class BasePage {
 	
@@ -476,47 +478,67 @@ public class BasePage {
 	}
 
 	public UserOrdersPO openOrderPage(WebDriver driver) {
-		waitForElementClickable(driver, AbstractPageUI.MY_ORDER_LINK);
-		clickToElement(driver, AbstractPageUI.MY_ORDER_LINK);
+		waitForElementClickable(driver, BasePageUI.MY_ORDER_LINK);
+		clickToElement(driver, BasePageUI.MY_ORDER_LINK);
 		return PageGeneratorManager.getOrdersPage(driver);
 	}
 
-	public UserMyProductReviewPO openMyProductReviewPage(WebDriver driver) {
-		waitForElementClickable(driver, AbstractPageUI.MY_PRODUCT_REVIEW_LINK);
-		clickToElement(driver, AbstractPageUI.MY_PRODUCT_REVIEW_LINK);
-		return PageGeneratorManager.getMyProductReviewPage(driver);
+	public UserMyProductReviewPageObject openMyProductReviewPage(WebDriver driver) {
+		waitForElementClickable(driver, BasePageUI.MY_PRODUCT_REVIEW_LINK);
+		clickToElement(driver, BasePageUI.MY_PRODUCT_REVIEW_LINK);
+		return PageGeneratorManager.getUserMyProductReviewPage(driver);
 	}
 
-	public UserCustomerInfoPO openCustomerInfoPage(WebDriver driver) {
-		waitForElementClickable(driver, AbstractPageUI.CUSTOMER_INFOR_LINK);
-		clickToElement(driver, AbstractPageUI.CUSTOMER_INFOR_LINK);
-		return PageGeneratorManager.getCustomerInfoPage(driver);
+	public UserCustomerInforPageObject openCustomerInfoPage(WebDriver driver) {
+		waitForElementClickable(driver, BasePageUI.CUSTOMER_INFOR_LINK);
+		clickToElement(driver, BasePageUI.CUSTOMER_INFOR_LINK);
+		return PageGeneratorManager.getMyAccountPage(driver);
 	}
 
-	public UserAddressesPO openAddressedPage(WebDriver driver) {
-		waitForElementClickable(driver, AbstractPageUI.ADDRESSES_LINK);
-		clickToElement(driver, AbstractPageUI.ADDRESSES_LINK);
-		return PageGeneratorManager.getAddressesPage(driver);
+	public UserAddressesPageObject openAddressPage(WebDriver driver) {
+		waitForElementClickable(driver, BasePageUI.ADDRESSES_LINK);
+		clickToElement(driver, BasePageUI.ADDRESSES_LINK);
+		return PageGeneratorManager.getUserAddressesPage(driver);
+	}
+	
+	public UserRewardPointPageObject openRewardPoint(WebDriver driver) {
+		waitForElementClickable(driver, BasePageUI.MY_REWARD_LINK);
+		clickToElement(driver, BasePageUI.MY_REWARD_LINK);
+		return PageGeneratorManager.getUserRewardPointPage(driver);
+	}
+	
+	public UserHomePageObject clickLogoutLinkAtUserPage(WebDriver driver) {
+		waitForElementClickable(driver, BasePageUI.LOGOUT_LINK_AT_USER);
+		clickToElement(driver, BasePageUI.LOGOUT_LINK_AT_USER);
+		return PageGeneratorManager.getUserHomePage(driver);
+		
+	}
+	
+	public AdminLoginPageObject clickLogoutLinkAtAdminPage(WebDriver driver) {
+		waitForElementClickable(driver, BasePageUI.LOGOUT_LINK_AT_ADMIN);
+		clickToElement(driver, BasePageUI.LOGOUT_LINK_AT_ADMIN);
+		return PageGeneratorManager.getAdminLoginPage(driver);
+		
 	}
 
 	public BasePage openLinkByPageName(WebDriver driver, String pageName) {
-		waitForElementClickable(driver, AbstractPageUI.DYNAMIC_LINK, pageName);
-		clickToElement(driver, AbstractPageUI.DYNAMIC_LINK, pageName);
+		waitForElementClickable(driver, BasePageUI.DYNAMIC_LINK, pageName);
+		clickToElement(driver, BasePageUI.DYNAMIC_LINK, pageName);
 		switch (pageName) {
 		case "Addresses":
-			return PageGeneratorManager.getAddressesPage(driver);
+			return PageGeneratorManager.getUserAddressesPage(driver);
 		case "My product reviews":
-			return PageGeneratorManager.getMyProductReviewPage(driver);
+			return PageGeneratorManager.getUserMyProductReviewPage(driver);
 		case "Customer info":
-			return PageGeneratorManager.getCustomerInfoPage(driver);
+			return PageGeneratorManager.getMyAccountPage(driver);
 		default:
 			return PageGeneratorManager.getOrdersPage(driver);
 		}
 	}
 
 	public void openLinkWithPageName(WebDriver driver, String pageName) {
-		waitForElementClickable(driver, AbstractPageUI.DYNAMIC_LINK, pageName);
-		clickToElement(driver, AbstractPageUI.DYNAMIC_LINK, pageName);
+		waitForElementClickable(driver, BasePageUI.DYNAMIC_LINK, pageName);
+		clickToElement(driver, BasePageUI.DYNAMIC_LINK, pageName);
 
 	}
 

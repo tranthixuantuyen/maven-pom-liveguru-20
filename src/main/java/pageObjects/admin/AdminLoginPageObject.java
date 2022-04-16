@@ -1,14 +1,16 @@
-package pageObjects;
+package pageObjects.admin;
 
 import org.openqa.selenium.WebDriver;
 
 import commons.BasePage;
-import pageUIs.AdminLoginPageUI;
+import commons.PageGeneratorManager;
+import pageObjects.user.UserHomePageObject;
+import pageUIs.admin.AdminLoginPageUI;
 
-public class AdminLoginPO extends BasePage{
+public class AdminLoginPageObject extends BasePage{
 	WebDriver driver;
 	
-	public AdminLoginPO(WebDriver driver) {
+	public AdminLoginPageObject(WebDriver driver) {
 		this.driver = driver;
 	}
 
@@ -22,16 +24,24 @@ public class AdminLoginPO extends BasePage{
 		sendkeyToElement(driver, AdminLoginPageUI.PASSWORD_TEXTBOX, password);		
 	}
 	
-	public AdminDashboardPO clickToLoginButton() {
+	public AdminDashboardPageObject clickToLoginButton() {
 		waitForElementClickable(driver, AdminLoginPageUI.LOGIN_BUTTON);
 		clickToElement(driver, AdminLoginPageUI.LOGIN_BUTTON);
 		return PageGeneratorManager.getAdminDashboardPage(driver);	
 	}
 
-	public AdminDashboardPO loginToSystem(String email, String password) {
+	public AdminDashboardPageObject loginToSystem(String email, String password) {
 		inputToEmailTextbox(email);
 		inputToPasswordTextbox(password);
 		return clickToLoginButton();
 	}
+	
+	public AdminDashboardPageObject loginAsAdmin(String emailAddress, String password) {
+		inputToEmailTextbox(emailAddress);
+		inputToPasswordTextbox(password);
+		return clickToLoginButton();
+			
+	}
+	
 
 }

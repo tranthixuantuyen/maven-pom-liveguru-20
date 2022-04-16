@@ -3,10 +3,10 @@ package com.nopcommerce.user;
 import org.testng.annotations.Test;
 
 import commons.AbstractTest;
-import pageObjects.UserCustomerInfoPO;
-import pageObjects.UserHomePageObject;
-import pageObjects.UserLoginPageObject;
-import pageObjects.UserRegisterPageObject;
+import pageObjects.user.UserCustomerInforPageObject;
+import pageObjects.user.UserHomePageObject;
+import pageObjects.user.UserLoginPageObject;
+import pageObjects.user.UserRegisterPageObject;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
@@ -25,7 +25,7 @@ public class Level_06_Register_Login_Page_Generator_Manager extends AbstractTest
 	UserHomePageObject homePage;
 	UserRegisterPageObject registerPage;
 	UserLoginPageObject loginPage;
-	UserCustomerInfoPO customerInforPage;
+	UserCustomerInforPageObject customerInforPage;
 	
 	@Parameters("browser")
 	@BeforeTest

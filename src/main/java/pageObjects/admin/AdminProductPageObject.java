@@ -1,4 +1,4 @@
-package pageObjects;
+package pageObjects.admin;
 
 import java.util.List;
 
@@ -6,12 +6,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import commons.BasePage;
-import pageUIs.AdminProductPageUI;
+import pageUIs.admin.AdminProductPageUI;
 
-public class AdminProductPO extends BasePage{
+public class AdminProductPageObject extends BasePage{
 	WebDriver driver;
 	
-	public AdminProductPO(WebDriver driver) {
+	public AdminProductPageObject(WebDriver driver) {
 		this.driver = driver;
 	}
 

@@ -3,14 +3,14 @@ package com.nopcommerce.user;
 import org.testng.annotations.Test;
 
 import commons.AbstractTest;
-import pageObjects.UserAddressesPO;
-import pageObjects.UserCustomerInfoPO;
-import pageObjects.UserHomePageObject;
-import pageObjects.UserLoginPageObject;
-import pageObjects.UserMyProductReviewPO;
-import pageObjects.UserOrdersPO;
-import pageObjects.PageGeneratorManager;
-import pageObjects.UserRegisterPageObject;
+import commons.PageGeneratorManager;
+import pageObjects.user.UserAddressesPageObject;
+import pageObjects.user.UserCustomerInforPageObject;
+import pageObjects.user.UserHomePageObject;
+import pageObjects.user.UserLoginPageObject;
+import pageObjects.user.UserMyProductReviewPageObject;
+import pageObjects.user.UserOrdersPO;
+import pageObjects.user.UserRegisterPageObject;
 import utilities.FakerConfig;
 
 import org.testng.annotations.BeforeTest;
@@ -31,10 +31,10 @@ public class Level_18_Register_Login_Fake_Data extends AbstractTest{
 	UserHomePageObject homePage;
 	UserRegisterPageObject registerPage;
 	UserLoginPageObject loginPage;
-	UserCustomerInfoPO customerInforPage;
-	UserAddressesPO addressesPage;
+	UserCustomerInforPageObject customerInforPage;
+	UserAddressesPageObject addressesPage;
 	UserOrdersPO orderPage;
-	UserMyProductReviewPO myProductPage;
+	UserMyProductReviewPageObject myProductPage;
 	
 	@Parameters({"browser", "url"})
 	@BeforeTest
@@ -56,7 +56,7 @@ public class Level_18_Register_Login_Fake_Data extends AbstractTest{
 	public void TC_01_RegisterToSystem() {
 		
 		log.info("Register - Step 01: Open Home Page");
-		homePage = PageGeneratorManager.getHomePage(driver);
+		homePage = PageGeneratorManager.getUserHomePage(driver);
 		
 		log.info("Register - Step 02: Verify Register link displayed");
 		Assert.assertTrue(homePage.isResterLinkDisplayed());
