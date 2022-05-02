@@ -16,6 +16,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class BaseTest {
 	private WebDriver driverBaseTest;
 	String projectLocaion = System.getProperty("user.dir");
+	
 	protected WebDriver getBrowserDriver(String browserName) {
 
 		if (browserName.equals("firefox")) {
@@ -55,7 +56,7 @@ public class BaseTest {
 			throw new RuntimeException("Browser name invalid.");
 		}
 
-		driverBaseTest.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driverBaseTest.manage().timeouts().implicitlyWait(GlobalConstants.LONG_TIMEOUT, TimeUnit.SECONDS);
 		driverBaseTest.get(GlobalConstants.DEV_PORTAL_PAGE_URL);
 		return driverBaseTest;
 
@@ -93,18 +94,25 @@ public class BaseTest {
 			// CocCoc browser subtract 5-6 version chrome driver
 			WebDriverManager.chromedriver().driverVersion("93.0.4577.63").setup();
 			ChromeOptions options = new ChromeOptions();
-			options.setBinary("C:\\Program Files\\CocCoc\\Browser\\Application\\browser.exe");
+			
+			if (GlobalConstants.OS_NAME.startsWith("windows")) {
+				options.setBinary("C:\\Program Files\\CocCoc\\Browser\\Application\\browser.exe");
+			} else {
+				options.setBinary("....");
+			}
+			
 			driverBaseTest = new ChromeDriver(options);
 
 		} else {
 			throw new RuntimeException("Browser name invalid.");
 		}
 
-		driverBaseTest.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driverBaseTest.manage().timeouts().implicitlyWait(GlobalConstants.LONG_TIMEOUT, TimeUnit.SECONDS);
 		driverBaseTest.get(getEnviromentUrl(enviromentName));
 		return driverBaseTest;
 
 	}
+	
 	private String getEnviromentUrl (String enviromentName) {
 		String url = null;
 		switch (enviromentName) {

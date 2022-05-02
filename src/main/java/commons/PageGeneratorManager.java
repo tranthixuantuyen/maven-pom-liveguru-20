@@ -19,24 +19,31 @@ public class PageGeneratorManager {
 	public static UserLoginPageObject getUserLoginPage(WebDriver driver) {
 		return new UserLoginPageObject(driver);
 	}
+	
 	public static UserHomePageObject getUserHomePage(WebDriver driver) {
 		return new UserHomePageObject(driver);
 	}
+	
 	public static UserRegisterPageObject getUserRegisterPage(WebDriver driver) {
 		return new UserRegisterPageObject(driver);
 	}
+	
 	public static UserCustomerInforPageObject getMyAccountPage(WebDriver driver) {
 		return new UserCustomerInforPageObject(driver);
 	}
+	
 	public static UserAddressesPageObject getUserAddressesPage(WebDriver driver) {
 		return new UserAddressesPageObject(driver);
 	}
+	
 	public static UserRewardPointPageObject getUserRewardPointPage(WebDriver driver) {
 		return new UserRewardPointPageObject(driver);
 	}
+	
 	public static UserMyProductReviewPageObject getUserMyProductReviewPage(WebDriver driver) {
 		return new UserMyProductReviewPageObject(driver);
 	}
+	
 	public static UserOrdersPO getOrdersPage(WebDriver driver) {
 		return new UserOrdersPO(driver);
 	}
