@@ -2,17 +2,17 @@ package commons;
 
 import org.openqa.selenium.WebDriver;
 
-import pageObjects.admin.AdminDashboardPageObject;
-import pageObjects.admin.AdminLoginPageObject;
-import pageObjects.admin.AdminProductPageObject;
-import pageObjects.user.UserAddressesPageObject;
-import pageObjects.user.UserCustomerInforPageObject;
-import pageObjects.user.UserHomePageObject;
-import pageObjects.user.UserLoginPageObject;
-import pageObjects.user.UserMyProductReviewPageObject;
-import pageObjects.user.UserOrdersPO;
-import pageObjects.user.UserRegisterPageObject;
-import pageObjects.user.UserRewardPointPageObject;
+import pageObjects.nopCommerce.admin.AdminDashboardPageObject;
+import pageObjects.nopCommerce.admin.AdminLoginPageObject;
+import pageObjects.nopCommerce.admin.AdminProductPageObject;
+import pageObjects.nopCommerce.user.UserAddressesPageObject;
+import pageObjects.nopCommerce.user.UserCustomerInforPageObject;
+import pageObjects.nopCommerce.user.UserHomePageObject;
+import pageObjects.nopCommerce.user.UserLoginPageObject;
+import pageObjects.nopCommerce.user.UserMyProductReviewPageObject;
+import pageObjects.nopCommerce.user.UserOrdersPO;
+import pageObjects.nopCommerce.user.UserRegisterPageObject;
+import pageObjects.nopCommerce.user.UserRewardPointPageObject;
 
 public class PageGeneratorManager {
 	

@@ -12,14 +12,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import pageObjects.admin.AdminLoginPageObject;
-import pageObjects.user.UserAddressesPageObject;
-import pageObjects.user.UserCustomerInforPageObject;
-import pageObjects.user.UserHomePageObject;
-import pageObjects.user.UserMyProductReviewPageObject;
-import pageObjects.user.UserOrdersPO;
-import pageObjects.user.UserRewardPointPageObject;
-import pageUIs.user.BasePageUI;
+import pageObjects.nopCommerce.admin.AdminLoginPageObject;
+import pageObjects.nopCommerce.user.UserAddressesPageObject;
+import pageObjects.nopCommerce.user.UserCustomerInforPageObject;
+import pageObjects.nopCommerce.user.UserHomePageObject;
+import pageObjects.nopCommerce.user.UserMyProductReviewPageObject;
+import pageObjects.nopCommerce.user.UserOrdersPO;
+import pageObjects.nopCommerce.user.UserRewardPointPageObject;
+import pageUIs.nopCommerce.user.BasePageUI;
 
 public class BasePage_1 {
 

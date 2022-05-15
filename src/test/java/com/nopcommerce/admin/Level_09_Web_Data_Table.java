@@ -3,10 +3,10 @@ package com.nopcommerce.admin;
 import org.testng.annotations.Test;
 
 import commons.AbstractTest;
-import pageObjects.AdminDashboardPO;
-import pageObjects.AdminLoginPO;
-import pageObjects.AdminProductPO;
-import pageObjects.PageGeneratorManager;
+import commons.PageGeneratorManager;
+import pageObjects.nopCommerce.admin.AdminDashboardPageObject;
+import pageObjects.nopCommerce.admin.AdminLoginPageObject;
+import pageObjects.nopCommerce.admin.AdminProductPageObject;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
@@ -60,7 +60,7 @@ public class Level_09_Web_Data_Table extends AbstractTest{
 		driver.quit();
 	}
 	
-	AdminLoginPO loginPage;
-	AdminDashboardPO dashboardPage;
-	AdminProductPO productPage;
+	AdminLoginPageObject loginPage;
+	AdminDashboardPageObject dashboardPage;
+	AdminProductPageObject productPage;
 }
