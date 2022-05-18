@@ -146,9 +146,9 @@ public class BaseTest {
 		boolean pass = true;
 		try {
 			Assert.assertFalse(condition);
-			System.out.print(" -------------------------- PASSED -------------------------- ");
+			System.out.println(" -------------------------- PASSED -------------------------- ");
 		} catch (Throwable e) {
-			System.out.print(" -------------------------- FAILED -------------------------- ");
+			System.out.println(" -------------------------- FAILED -------------------------- ");
 			pass = false;
 			VerificationFailures.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
 			Reporter.getCurrentTestResult().setThrowable(e);
@@ -160,10 +160,10 @@ public class BaseTest {
 		boolean pass = true;
 		try {
 			Assert.assertEquals(actual, expected);
-			System.out.print(" -------------------------- PASSED -------------------------- ");
+			System.out.println(" -------------------------- PASSED -------------------------- ");
 		} catch (Throwable e) {
 			pass = false;
-			System.out.print(" -------------------------- FAILED -------------------------- ");
+			System.out.println(" -------------------------- FAILED -------------------------- ");
 			VerificationFailures.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
 			Reporter.getCurrentTestResult().setThrowable(e);
 		}
