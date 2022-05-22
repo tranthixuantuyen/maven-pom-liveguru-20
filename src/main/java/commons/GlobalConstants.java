@@ -18,5 +18,7 @@ public class GlobalConstants {
 	public static final String UPLOAD_FILE_FOLDER = PROJECT_PATH + File.separator + "uploadFiles";
 	public static final String DOWNLOAD_FILE_FOLDER = PROJECT_PATH + File.separator + "downloadFiles";
 	public static final String BROWSER_LOG_FOLDER = PROJECT_PATH + File.separator + "browserLogs";
+	public static final String REPORTING_SCREENSHOT = PROJECT_PATH + File.separator + "ReportNGImages" + File.separator;
+	
 
 }

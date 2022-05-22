@@ -131,6 +131,10 @@ public class BaseTest {
 		}
 		return url;
 	}
+	
+	public WebDriver getDriverInstance() {
+		return driverBaseTest;
+	}
 
 	protected boolean verifyTrue(boolean condition) {
 		boolean pass = true;
