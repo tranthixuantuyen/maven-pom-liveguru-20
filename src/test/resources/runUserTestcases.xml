@@ -3,12 +3,14 @@
 
 	<listeners>
 		<listener class-name="commons.MethodListener" />
+		<listener class-name="org.uncommons.reportng.HTMLReporter"/>
+     	<listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
 	</listeners>
 	
 <!--  	 <test name="Run on Firefox">
 	  <parameter name="browser" value="firefox"/>
 	    <classes>
-	      <class name="com.nopcommerce.user.Level_03_Page_Object_02_Login"/>
+	      <class name="com.nopcommerce.user.Level_12_Assert_Verify"/>
 	    </classes>
 	  </test>  -->
 	<parameter name="enviroment" value="DEV" />
@@ -16,7 +18,7 @@
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class
-				name="com.nopcommerce.user.Level_07_Switch_Page" />
+				name="com.nopcommerce.user.Level_14_Log_ReportNG" />
 		</classes>
 	</test> 
 	

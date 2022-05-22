@@ -1,5 +1,6 @@
 package commons;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -119,8 +120,8 @@ public class BasePage {
 		select = new Select(getElement(driver, locator));
 		select.selectByVisibleText(textItem);
 	}
-	
-	public void selectItemInDefaultDropdown(WebDriver driver, String locator, String textItem, String...values) {
+
+	public void selectItemInDefaultDropdown(WebDriver driver, String locator, String textItem, String... values) {
 		select = new Select(getElement(driver, getDynamicLocator(locator, values)));
 		select.selectByVisibleText(textItem);
 	}
@@ -159,8 +160,8 @@ public class BasePage {
 			element.click();
 		}
 	}
-	
-	public void checkToDefaultCheckbox(WebDriver driver, String locator, String...values) {
+
+	public void checkToDefaultCheckbox(WebDriver driver, String locator, String... values) {
 		element = getElement(driver, getDynamicLocator(locator, values));
 		if (!element.isSelected()) {
 			element.click();
@@ -173,8 +174,8 @@ public class BasePage {
 			element.click();
 		}
 	}
-	
-	public void uncheckToDefaultCheckbox(WebDriver driver, String locator, String...values) {
+
+	public void uncheckToDefaultCheckbox(WebDriver driver, String locator, String... values) {
 		element = getElement(driver, getDynamicLocator(locator, values));
 		if (element.isSelected()) {
 			element.click();
@@ -195,7 +196,7 @@ public class BasePage {
 		}
 	}
 
-	public void overideImplicitWait(WebDriver driver, long timeInsecond) {
+	public void overrideImplicitTimeout(WebDriver driver, long timeInsecond) {
 		driver.manage().timeouts().implicitlyWait(timeInsecond, TimeUnit.SECONDS);
 	}
 
@@ -299,19 +300,28 @@ public class BasePage {
 		return getElements(driver, getDynamicLocator(locator, values)).size();
 	}
 
+	
 	public boolean isElementUndisplayed(WebDriver driver, String locator) {
-
-		overideImplicitWait(driver, GlobalConstants.SHORT_TIMEOUT);
+		System.out.println("Start time = " + new Date().toString());
+		
+		overrideImplicitTimeout(driver, GlobalConstants.SHORT_TIMEOUT);
 		elements = getElements(driver, locator);
-		overideImplicitWait(driver, GlobalConstants.LONG_TIMEOUT);
+		overrideImplicitTimeout(driver, GlobalConstants.LONG_TIMEOUT);
+		
 		if (elements.size() == 0) {
+			System.out.println("Element not in DOM ");
+			System.out.println("End time = " + new Date().toString());
 			return true;
 		} else if (elements.size() > 0 && !elements.get(0).isDisplayed()) {
+			System.out.println("Element in DOM but not visible/ displayed ");
+			System.out.println("End time = " + new Date().toString());
 			return true;
 		} else {
+			System.out.println("Element in DOM and visiable");
 			return false;
 		}
 	}
+	 
 
 	public boolean isElementDisplayed(WebDriver driver, String locator) {
 		try {
@@ -502,9 +512,9 @@ public class BasePage {
 
 	public void waitForElementInvisible(WebDriver driver, String locator) {
 		explicitWait = new WebDriverWait(driver, GlobalConstants.SHORT_TIMEOUT);
-		overideImplicitWait(driver, GlobalConstants.SHORT_TIMEOUT);
+		overrideImplicitTimeout(driver, GlobalConstants.SHORT_TIMEOUT);
 		explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(getByLocator(locator)));
-		overideImplicitWait(driver, GlobalConstants.LONG_TIMEOUT);
+		overrideImplicitTimeout(driver, GlobalConstants.LONG_TIMEOUT);
 	}
 
 	public void waitForElementInvisible(WebDriver driver, String locator, String... values) {
