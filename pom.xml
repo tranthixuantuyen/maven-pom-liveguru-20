@@ -1,4 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>maven-pom-liveguru-20</groupId>
   <artifactId>maven-pom-liveguru-20</artifactId>
@@ -21,7 +21,7 @@
 		<testng.version>6.14.3</testng.version>
 		<jackson.version>2.9.4</jackson.version>
 		<webdrivermanager.version>4.2.2</webdrivermanager.version>
-		<aspectj.version>1.9.1</aspectj.version>
+		<aspectj.version>1.8.10</aspectj.version>
 		<cucumber.version> 1.2.5 </cucumber.version>
 		<selenium.version> 3.14.0 </selenium.version>
 
@@ -217,7 +217,7 @@
 		<dependency>
 			<groupId>io.qameta.allure</groupId>
 			<artifactId>allure-testng</artifactId>
-			<version>2.13.5</version>
+			<version>2.17.0</version>
 		</dependency>
 	</dependencies>
 
@@ -251,15 +251,18 @@
 					<!-- Argument -->
 					<argLine>
 						-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
-					</argLine>
+					</argLine> 
 				</configuration>
 				
-				<dependencies>
+				<dependencies>		
+					<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
 					<dependency>
-						<groupId>org.aspectj</groupId>
-						<artifactId>aspectjweaver</artifactId>
-						<version>${aspectj.version}</version>
+					    <groupId>org.aspectj</groupId>
+					    <artifactId>aspectjweaver</artifactId>
+					    <version>${aspectj.version}</version>
+					    <scope>runtime</scope>
 					</dependency>
+					
 				</dependencies>
 			</plugin>
 			

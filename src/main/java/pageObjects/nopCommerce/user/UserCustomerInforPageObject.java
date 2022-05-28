@@ -3,6 +3,7 @@ package pageObjects.nopCommerce.user;
 import org.openqa.selenium.WebDriver;
 
 import commons.BasePage;
+import io.qameta.allure.Step;
 import pageUIs.nopCommerce.user.UserCustomerInforPageUI;
 
 public class UserCustomerInforPageObject extends BasePage{
@@ -52,7 +53,7 @@ public class UserCustomerInforPageObject extends BasePage{
 		return getElementAttribute(driver, UserCustomerInforPageUI.COMPANY_TEXTBOX, "value");
 	}
 
-
+	@Step("Verify Customer link to displayed ")
 	public boolean isCustomerInforDisplayed() {
 		waitForElementVisible(driver, UserCustomerInforPageUI.CUSTOMER_INFOR_HEADER);
 		return isElementDisplayed(driver, UserCustomerInforPageUI.CUSTOMER_INFOR_HEADER);
