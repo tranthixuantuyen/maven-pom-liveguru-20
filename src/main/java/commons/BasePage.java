@@ -299,7 +299,6 @@ public class BasePage {
 	public int getElementSize(WebDriver driver, String locator, String... values) {
 		return getElements(driver, getDynamicLocator(locator, values)).size();
 	}
-
 	
 	public boolean isElementUndisplayed(WebDriver driver, String locator) {
 		System.out.println("Start time = " + new Date().toString());
@@ -321,7 +320,6 @@ public class BasePage {
 			return false;
 		}
 	}
-	 
 
 	public boolean isElementDisplayed(WebDriver driver, String locator) {
 		try {
