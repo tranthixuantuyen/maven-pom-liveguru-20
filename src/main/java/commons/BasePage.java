@@ -56,6 +56,17 @@ public class BasePage {
 	public void refreshCurrentPage(WebDriver driver) {
 		driver.navigate().refresh();
 	}
+	
+	public Set<Cookie> getAllCookies(WebDriver driver){
+		return driver.manage().getCookies();
+	}
+	
+	public void setCookies(WebDriver driver, Set<Cookie> cookies){
+		for (Cookie cookie : cookies) {
+			driver.manage().addCookie(cookie);
+		}
+		sleepInSecond(3);
+	}
 
 	public Alert waitForAlertPresence(WebDriver driver) {
 		WebDriverWait explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
