@@ -1,26 +1,20 @@
 package com.nopcommerce.user;
 
-import org.testng.annotations.Test;
-
-import commons.BaseTest;
-import commons.PageGeneratorManager;
-import pageObjects.nopCommerce.user.UserAddressesPageObject;
-import pageObjects.nopCommerce.user.UserCustomerInforPageObject;
-import pageObjects.nopCommerce.user.UserHomePageObject;
-import pageObjects.nopCommerce.user.UserLoginPageObject;
-import pageObjects.nopCommerce.user.UserMyProductReviewPageObject;
-import pageObjects.nopCommerce.user.UserRegisterPageObject;
-import pageObjects.nopCommerce.user.UserRewardPointPageObject;
-
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Listeners;
-import org.testng.annotations.Parameters;
-
 import java.util.Random;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+import commons.BaseTest;
+import commons.PageGeneratorManager;
+import pageObjects.nopCommerce.user.UserCustomerInforPageObject;
+import pageObjects.nopCommerce.user.UserHomePageObject;
+import pageObjects.nopCommerce.user.UserLoginPageObject;
+import pageObjects.nopCommerce.user.UserRegisterPageObject;
 
 public class Level_14_Log_ReportNG extends BaseTest{
 	private WebDriver driver;
@@ -115,9 +109,6 @@ public class Level_14_Log_ReportNG extends BaseTest{
 	private UserRegisterPageObject registerPage;
 	private UserLoginPageObject loginPage;
 	private UserCustomerInforPageObject customerInforPage;
-	private UserAddressesPageObject addressPage;
-	private UserMyProductReviewPageObject myProductReviewPage;
-	private UserRewardPointPageObject rewardPointPage;
 	
 
 }

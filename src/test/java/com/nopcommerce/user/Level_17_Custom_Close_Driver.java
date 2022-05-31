@@ -1,26 +1,20 @@
 package com.nopcommerce.user;
 
-import org.testng.annotations.Test;
-
-import commons.BaseTest;
-import commons.PageGeneratorManager;
-import pageObjects.nopCommerce.user.UserAddressesPageObject;
-import pageObjects.nopCommerce.user.UserCustomerInforPageObject;
-import pageObjects.nopCommerce.user.UserHomePageObject;
-import pageObjects.nopCommerce.user.UserLoginPageObject;
-import pageObjects.nopCommerce.user.UserMyProductReviewPageObject;
-import pageObjects.nopCommerce.user.UserRegisterPageObject;
-import pageObjects.nopCommerce.user.UserRewardPointPageObject;
-
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Listeners;
-import org.testng.annotations.Parameters;
-
 import java.util.Random;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+import commons.BaseTest;
+import commons.PageGeneratorManager;
+import pageObjects.nopCommerce.user.UserCustomerInforPageObject;
+import pageObjects.nopCommerce.user.UserHomePageObject;
+import pageObjects.nopCommerce.user.UserLoginPageObject;
+import pageObjects.nopCommerce.user.UserRegisterPageObject;
 
 public class Level_17_Custom_Close_Driver extends BaseTest{
 	private WebDriver driver;
@@ -39,10 +33,6 @@ public class Level_17_Custom_Close_Driver extends BaseTest{
 		emailAdress = "tuyen" + randomNumber() + "@mail.vn";
 		validPassword = "123456";
 		
-	}
-	
-	@Test
-	public void User_01_Register_Login() {
 		log.info("Register - Step 01: Navigate to 'Register' page");
 		registerPage = homePage.clickToRegisterLink();
 		
@@ -69,11 +59,7 @@ public class Level_17_Custom_Close_Driver extends BaseTest{
 		
 		log.info("Register - Step 09: Click to Logout link");
 		homePage = registerPage.clickToLogoutLink();
-
-	}
-	
-	@Test
-	public void User_02_Login() {
+		
 		log.info("Login - Step 01: Navigate to Login page");
 		loginPage = homePage.clickToLoginLink();
 		
@@ -85,25 +71,32 @@ public class Level_17_Custom_Close_Driver extends BaseTest{
 		
 		log.info("Login - Step 04: Click to 'Register' button");
 		homePage = loginPage.clickToLoginButton();
-	//	Assert.assertTrue(homePage.isMyAccountLinkDisplayed());
 		log.info("Login - Step 05: Verify 'My account' link is displayed");
-		verifyTrue(homePage.isMyAccountLinkDisplayed());
+		Assert.assertFalse(homePage.isMyAccountLinkDisplayed());
 		
 		log.info("Login - Step 06: Navigate to 'My account' page");
 		customerInforPage = homePage.clickToMyAccountLink();
-	//	Assert.assertTrue(customerInforPage.isCustomerInforDisplayed());
 		
 		log.info("Login - Step 07: Verify 'Customer Infor' page is displayed");
-		verifyTrue(customerInforPage.isCustomerInforDisplayed());
+		Assert.assertFalse(customerInforPage.isCustomerInforDisplayed());
+		
+	}
+	
+	@Test
+	public void User_01_Register_Login() {
 
 	}
 	
+	@Test
+	public void User_02_Login() {
+
+	}
 	
 
-
-	@AfterTest
+	@AfterTest (alwaysRun = true)
 	public void afterTest() {
 		driver.quit();
+		closeBrowserAndDriver();
 	}
 
 	public int randomNumber() {
@@ -115,9 +108,6 @@ public class Level_17_Custom_Close_Driver extends BaseTest{
 	private UserRegisterPageObject registerPage;
 	private UserLoginPageObject loginPage;
 	private UserCustomerInforPageObject customerInforPage;
-	private UserAddressesPageObject addressPage;
-	private UserMyProductReviewPageObject myProductReviewPage;
-	private UserRewardPointPageObject rewardPointPage;
 	
 
 }
