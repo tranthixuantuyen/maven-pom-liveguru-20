@@ -95,7 +95,6 @@ public class Level_17_Custom_Close_Driver extends BaseTest{
 
 	@AfterTest (alwaysRun = true)
 	public void afterTest() {
-		driver.quit();
 		closeBrowserAndDriver();
 	}
 
