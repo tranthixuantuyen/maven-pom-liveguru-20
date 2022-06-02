@@ -286,6 +286,10 @@ public class BasePage {
 	public String getElementAttribute(WebDriver driver, String locator, String attributeName) {
 		return getElement(driver, locator).getAttribute(attributeName);
 	}
+	
+	public String getElementAttribute(WebDriver driver, String locator, String attributeName, String... values) {
+		return getElement(driver,  getDynamicLocator(locator, values)).getAttribute(attributeName);
+	}
 
 	public String getElementText(WebDriver driver, String locator) {
 		return getElement(driver, locator).getText();
@@ -631,12 +635,80 @@ public class BasePage {
 		}
 	}
 
-	// Level_09_Dynamic_Locator
+	// Pattern Object - Level_09_Dynamic_Locator
 	public void openPagesAtMyAccountByPageName(WebDriver driver, String pageName) {
 		waitForElementClickable(driver, BasePageUI.DYNAMIC_PAGE_AT_MY_ACCOUNT, pageName);
 		clickToElement(driver, BasePageUI.DYNAMIC_PAGE_AT_MY_ACCOUNT, pageName);
 	}
+	
 
+	/** 
+	 * Enter to dynamic Textbox by ID
+	 * @param driver
+	 * @param textboxID
+	 * @param value
+	 */
+	public void inputTextboxByID(WebDriver driver, String textboxID, String value) {
+		waitForElementVisible(driver, BasePageUI.DYNAMIC_TEXTBOX_BY_ID, textboxID);
+		sendkeyToElement(driver, BasePageUI.DYNAMIC_TEXTBOX_BY_ID, value, textboxID);
+		
+	}
+
+	/** 
+     * Enter to dynamic Button by text
+	 * @param driver
+	 * @param buttonText
+	 */
+	public void clickToButtonByText(WebDriver driver, String buttonText) {
+		waitForElementClickable(driver, BasePageUI.DYNAMIC_BUTTON_BY_TEXT, buttonText);
+		clickToElement(driver, BasePageUI.DYNAMIC_BUTTON_BY_TEXT, buttonText);
+	}
+	
+	/** 
+	 * Select item in drop down by name attribute
+	 * @param driver
+	 * @param dropdownAttributeName
+	 * @param itemValue
+	 */
+	public void selectToDropdownByName(WebDriver driver, String dropdownAttributeName, String itemValue) {
+		waitForElementClickable(driver, BasePageUI.DYNAMIC_DROPDOWN_BY_NAME, dropdownAttributeName);
+		selectItemInDefaultDropdown(driver, BasePageUI.DYNAMIC_DROPDOWN_BY_NAME, itemValue, dropdownAttributeName);
+		
+	}
+	
+	/**
+	 * Click to dynamic radio by label name
+	 * @param driver
+	 * @param radioButtonLableName
+	 */
+	public void clickToRadioButtonByLabel(WebDriver driver, String radioButtonLableName) {
+		waitForElementClickable(driver, BasePageUI.DYNAMIC_RADIO_BUTTON_BY_LABEL, radioButtonLableName);
+		checkToDefaultCheckbox(driver, BasePageUI.DYNAMIC_RADIO_BUTTON_BY_LABEL, radioButtonLableName);
+		
+	}
+	
+	/**
+	 * Click to dynamic check box by label name
+	 * @param driver
+	 * @param checkboxLableName
+	 */
+	public void clickToTextboxByLabel(WebDriver driver, String checkboxLableName) {
+		waitForElementClickable(driver, BasePageUI.DYNAMIC_CHECKBOX_BY_LABEL, checkboxLableName);
+		checkToDefaultCheckbox(driver, BasePageUI.DYNAMIC_CHECKBOX_BY_LABEL, checkboxLableName);
+		
+	}
+	
+	/**
+	 * Get value in Text box by textboxID
+	 * @param driver
+	 * @param textboxID
+	 * @return
+	 */
+	public String getTextboxValueByID(WebDriver driver, String textboxID) {
+		waitForElementVisible(driver, BasePageUI.DYNAMIC_TEXTBOX_BY_ID, textboxID);
+		return getElementAttribute(driver, BasePageUI.DYNAMIC_TEXTBOX_BY_ID, "value",textboxID);
+	}
+	
 	private WebDriverWait explicitWait;
 	private JavascriptExecutor jsExecutor;
 	private WebElement element;
