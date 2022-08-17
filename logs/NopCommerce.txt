@@ -1,0 +1,4 @@
+[2022-06-09 00:43:50,433] Login - Step 01: Navigate to Login page
+[2022-06-09 00:43:50,964] Login - Step 02: Enter to Email textbox with value is 'tuyen48692@mail.vn'
+[2022-06-09 00:43:51,093] Login - Step 03: Enter to Password textbox with value is '123456'
+[2022-06-09 00:43:51,217] Login - Step 04: Click to 'Register' button

@@ -3,15 +3,14 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.nopcommerce.user.Level_03_Page_Object">
+      <class name="com.nopcommerce.user.Level_15_ExtentV5_Screenshot">
         <methods>
-          <include name="TC_01_Empty_Data"/>
           <include name="beforeTest"/>
-          <include name="TC_06_Register_Invalid_Confirm_Password"/>
-          <include name="TC_05_Register_Password_Less_Than_6_Chars"/>
+          <include name="User_02_Login"/>
           <include name="afterTest"/>
+          <include name="User_01_Register"/>
         </methods>
-      </class> <!-- com.nopcommerce.user.Level_03_Page_Object -->
+      </class> <!-- com.nopcommerce.user.Level_15_ExtentV5_Screenshot -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -32,10 +32,6 @@ public class Level_16_Share_Data_C extends BaseTest{
 		log.info("Pre-Condition - Step 02: Set cookie and reload page");
 		loginPage.setCookies(driver, Common_01_Register_Cookie.loggedCookies);
 		
-		for (Cookie cookie : Common_01_Register_Cookie.loggedCookies) {
-			System.out.println("Cookie at Share_Data_C Class: " + cookie);
-		}
-		
 		loginPage.refreshCurrentPage(driver);
 		
 		log.info("Pre-Condition - Step 03: Verify 'My account' link is displayed");

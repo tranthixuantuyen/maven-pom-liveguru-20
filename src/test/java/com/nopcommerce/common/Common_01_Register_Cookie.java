@@ -57,19 +57,19 @@ public class Common_01_Register_Cookie extends BaseTest{
 		log.info("Register - Step 09: Click to Logout link");
 		homePage = registerPage.clickToLogoutLink();
 		
-		log.info("Login - Step 01: Navigate to Login page");
+		log.info("Login - Step 10: Navigate to Login page");
 		loginPage = homePage.clickToLoginLink();
 		
-		log.info("Login - Step 02: Enter to Email textbox with value is '" + emailAdress + "'");
+		log.info("Login - Step 11: Enter to Email textbox with value is '" + emailAdress + "'");
 		loginPage.inputToEmailTextbox(emailAdress);
 		
-		log.info("Login - Step 03: Enter to Password textbox with value is '" + validPassword + "'");
+		log.info("Login - Step 12: Enter to Password textbox with value is '" + validPassword + "'");
 		loginPage.inputToPasswordTextbox(validPassword);
 		
-		log.info("Login - Step 04: Click to 'Register' button");
+		log.info("Login - Step 13: Click to 'Register' button");
 		homePage = loginPage.clickToLoginButton();
 		
-		loggedCookies = driver.manage().getCookies();
+		loggedCookies = homePage.getAllCookies(driver);
 		for (Cookie cookie : loggedCookies) {
 			System.out.println("Cookie at Common Class: " + cookie);
 		}
