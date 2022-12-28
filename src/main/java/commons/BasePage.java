@@ -20,6 +20,9 @@ import pageObjects.nopCommerce.user.UserHomePageObject;
 import pageObjects.nopCommerce.user.UserMyProductReviewPageObject;
 import pageObjects.nopCommerce.user.UserOrdersPO;
 import pageObjects.nopCommerce.user.UserRewardPointPageObject;
+import pageObjects.wordpress.AdminDashboardPO;
+import pageObjects.wordpress.AdminPostSearchPO;
+import pageObjects.wordpress.UserHomePO;
 import pageUIs.nopCommerce.user.BasePageUI;
 
 public class BasePage {
@@ -259,6 +262,18 @@ public class BasePage {
 		element = getElement(driver, locator);
 		element.clear();
 		element.sendKeys(value);
+	}
+
+	public void clearValueInElementByDeleteKey(WebDriver driver, String locator) {
+		element = getElement(driver, locator);
+		String os = System.getProperty("os.name");
+		if (os.equals("WINDOWS")){
+			Keys.chord(Keys.CONTROL, "a");
+			element.sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+		}else{
+			Keys.chord(Keys.COMMAND, "a");
+			element.sendKeys(Keys.chord(Keys.COMMAND,"a", Keys.DELETE));
+		}
 	}
 
 	public void sendkeyToElement(WebDriver driver, String locator, String value, String... values) {
@@ -508,8 +523,7 @@ public class BasePage {
 
 	public void waitForElementVisible(WebDriver driver, String locator, String... values) {
 		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
-		explicitWait
-				.until(ExpectedConditions.visibilityOfElementLocated(getByLocator(getDynamicLocator(locator, values))));
+		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(getByLocator(getDynamicLocator(locator, values))));
 	}
 
 	public void waitForAllElementVisible(WebDriver driver, String locator) {
@@ -707,6 +721,16 @@ public class BasePage {
 	public String getTextboxValueByID(WebDriver driver, String textboxID) {
 		waitForElementVisible(driver, BasePageUI.DYNAMIC_TEXTBOX_BY_ID, textboxID);
 		return getElementAttribute(driver, BasePageUI.DYNAMIC_TEXTBOX_BY_ID, "value",textboxID);
+	}
+
+	public UserHomePO openEndUserSite(WebDriver driver, String endUserUrl) {
+		openUrl(driver,endUserUrl);
+		return pageObjects.wordpress.PageGeneratorManager.getUserHomePage(driver);
+	}
+
+	public AdminDashboardPO openAdminSite(WebDriver driver, String adminUrl) {
+		openUrl(driver,adminUrl);
+		return pageObjects.wordpress.PageGeneratorManager.getAdminDashboardPage(driver);
 	}
 	
 	private WebDriverWait explicitWait;

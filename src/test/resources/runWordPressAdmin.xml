@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="WordPress - Admin">
+
+	<listeners>
+		<listener class-name="commons.MethodListener" />
+		
+		<!-- cho report testNG -->
+		<!-- <listener class-name="reportConfig.ReportNGListener" /> -->
+		
+<!-- 		<listener class-name="reportConfig.AllureTestListener" /> -->
+<!-- 		<listener class-name="org.uncommons.reportng.HTMLReporter"/> -->
+<!--      	<listener class-name="org.uncommons.reportng.JUnitXMLReporter"/> -->
+	</listeners>
+
+	<parameter name="urlAdmin" value="http://localhost/wp-admin" />
+	<parameter name="endUserUrl" value="http://localhost" />
+	
+	<test name="Run on Chrome">
+		<parameter name="browser" value="chrome" />
+		
+		<classes>	
+			<class name="com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search" />
+		</classes>
+		
+	</test> 
+	
+  
+</suite>

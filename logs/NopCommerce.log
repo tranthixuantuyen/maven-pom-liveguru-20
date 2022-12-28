@@ -377,3 +377,11 @@ Driver info: driver.version: Level_17_Custom_Close_Driver
 [2022-06-09 00:43:50,964] Login - Step 02: Enter to Email textbox with value is 'tuyen48692@mail.vn'
 [2022-06-09 00:43:51,093] Login - Step 03: Enter to Password textbox with value is '123456'
 [2022-06-09 00:43:51,217] Login - Step 04: Click to 'Register' button
+[2022-08-21 21:14:41,664] Login - Step 01: Navigate to Login page
+[2022-08-21 21:14:42,409] Login - Step 02: Enter to Email textbox with value is 'tuyen71342@mail.vn'
+[2022-08-21 21:14:42,501] Login - Step 03: Enter to Password textbox with value is '123456'
+[2022-08-21 21:14:42,556] Login - Step 04: Click to 'Register' button
+[2022-08-28 18:50:51,013] Login - Step 01: Navigate to Login page
+[2022-08-28 18:50:52,128] Login - Step 02: Enter to Email textbox with value is 'tuyen93976@mail.vn'
+[2022-08-28 18:50:52,220] Login - Step 03: Enter to Password textbox with value is '123456'
+[2022-08-28 18:50:52,274] Login - Step 04: Click to 'Register' button
