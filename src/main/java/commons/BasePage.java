@@ -20,6 +20,9 @@ import pageObjects.nopCommerce.user.UserHomePageObject;
 import pageObjects.nopCommerce.user.UserMyProductReviewPageObject;
 import pageObjects.nopCommerce.user.UserOrdersPO;
 import pageObjects.nopCommerce.user.UserRewardPointPageObject;
+import pageObjects.wordpress.AdminDashboardPO;
+import pageObjects.wordpress.AdminPostSearchPO;
+import pageObjects.wordpress.UserHomePO;
 import pageUIs.nopCommerce.user.BasePageUI;
 
 public class BasePage {
@@ -55,6 +58,17 @@ public class BasePage {
 
 	public void refreshCurrentPage(WebDriver driver) {
 		driver.navigate().refresh();
+	}
+	
+	public Set<Cookie> getAllCookies(WebDriver driver){
+		return driver.manage().getCookies();
+	}
+	
+	public void setCookies(WebDriver driver, Set<Cookie> cookies){
+		for (Cookie cookie : cookies) {
+			driver.manage().addCookie(cookie);
+		}
+		sleepInSecond(3);
 	}
 
 	public Alert waitForAlertPresence(WebDriver driver) {
@@ -250,6 +264,18 @@ public class BasePage {
 		element.sendKeys(value);
 	}
 
+	public void clearValueInElementByDeleteKey(WebDriver driver, String locator) {
+		element = getElement(driver, locator);
+		String os = System.getProperty("os.name");
+		if (os.equals("WINDOWS")){
+			Keys.chord(Keys.CONTROL, "a");
+			element.sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+		}else{
+			Keys.chord(Keys.COMMAND, "a");
+			element.sendKeys(Keys.chord(Keys.COMMAND,"a", Keys.DELETE));
+		}
+	}
+
 	public void sendkeyToElement(WebDriver driver, String locator, String value, String... values) {
 		element = getElement(driver, getDynamicLocator(locator, values));
 		element.clear();
@@ -274,6 +300,10 @@ public class BasePage {
 
 	public String getElementAttribute(WebDriver driver, String locator, String attributeName) {
 		return getElement(driver, locator).getAttribute(attributeName);
+	}
+	
+	public String getElementAttribute(WebDriver driver, String locator, String attributeName, String... values) {
+		return getElement(driver,  getDynamicLocator(locator, values)).getAttribute(attributeName);
 	}
 
 	public String getElementText(WebDriver driver, String locator) {
@@ -493,8 +523,7 @@ public class BasePage {
 
 	public void waitForElementVisible(WebDriver driver, String locator, String... values) {
 		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
-		explicitWait
-				.until(ExpectedConditions.visibilityOfElementLocated(getByLocator(getDynamicLocator(locator, values))));
+		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(getByLocator(getDynamicLocator(locator, values))));
 	}
 
 	public void waitForAllElementVisible(WebDriver driver, String locator) {
@@ -620,12 +649,90 @@ public class BasePage {
 		}
 	}
 
-	// Level_09_Dynamic_Locator
+	// Pattern Object - Level_09_Dynamic_Locator
 	public void openPagesAtMyAccountByPageName(WebDriver driver, String pageName) {
 		waitForElementClickable(driver, BasePageUI.DYNAMIC_PAGE_AT_MY_ACCOUNT, pageName);
 		clickToElement(driver, BasePageUI.DYNAMIC_PAGE_AT_MY_ACCOUNT, pageName);
 	}
+	
 
+	/** 
+	 * Enter to dynamic Textbox by ID
+	 * @param driver
+	 * @param textboxID
+	 * @param value
+	 */
+	public void inputTextboxByID(WebDriver driver, String textboxID, String value) {
+		waitForElementVisible(driver, BasePageUI.DYNAMIC_TEXTBOX_BY_ID, textboxID);
+		sendkeyToElement(driver, BasePageUI.DYNAMIC_TEXTBOX_BY_ID, value, textboxID);
+		
+	}
+
+	/** 
+     * Enter to dynamic Button by text
+	 * @param driver
+	 * @param buttonText
+	 */
+	public void clickToButtonByText(WebDriver driver, String buttonText) {
+		waitForElementClickable(driver, BasePageUI.DYNAMIC_BUTTON_BY_TEXT, buttonText);
+		clickToElement(driver, BasePageUI.DYNAMIC_BUTTON_BY_TEXT, buttonText);
+	}
+	
+	/** 
+	 * Select item in drop down by name attribute
+	 * @param driver
+	 * @param dropdownAttributeName
+	 * @param itemValue
+	 */
+	public void selectToDropdownByName(WebDriver driver, String dropdownAttributeName, String itemValue) {
+		waitForElementClickable(driver, BasePageUI.DYNAMIC_DROPDOWN_BY_NAME, dropdownAttributeName);
+		selectItemInDefaultDropdown(driver, BasePageUI.DYNAMIC_DROPDOWN_BY_NAME, itemValue, dropdownAttributeName);
+		
+	}
+	
+	/**
+	 * Click to dynamic radio by label name
+	 * @param driver
+	 * @param radioButtonLableName
+	 */
+	public void clickToRadioButtonByLabel(WebDriver driver, String radioButtonLableName) {
+		waitForElementClickable(driver, BasePageUI.DYNAMIC_RADIO_BUTTON_BY_LABEL, radioButtonLableName);
+		checkToDefaultCheckbox(driver, BasePageUI.DYNAMIC_RADIO_BUTTON_BY_LABEL, radioButtonLableName);
+		
+	}
+	
+	/**
+	 * Click to dynamic check box by label name
+	 * @param driver
+	 * @param checkboxLableName
+	 */
+	public void clickToTextboxByLabel(WebDriver driver, String checkboxLableName) {
+		waitForElementClickable(driver, BasePageUI.DYNAMIC_CHECKBOX_BY_LABEL, checkboxLableName);
+		checkToDefaultCheckbox(driver, BasePageUI.DYNAMIC_CHECKBOX_BY_LABEL, checkboxLableName);
+		
+	}
+	
+	/**
+	 * Get value in Text box by textboxID
+	 * @param driver
+	 * @param textboxID
+	 * @return
+	 */
+	public String getTextboxValueByID(WebDriver driver, String textboxID) {
+		waitForElementVisible(driver, BasePageUI.DYNAMIC_TEXTBOX_BY_ID, textboxID);
+		return getElementAttribute(driver, BasePageUI.DYNAMIC_TEXTBOX_BY_ID, "value",textboxID);
+	}
+
+	public UserHomePO openEndUserSite(WebDriver driver, String endUserUrl) {
+		openUrl(driver,endUserUrl);
+		return pageObjects.wordpress.PageGeneratorManager.getUserHomePage(driver);
+	}
+
+	public AdminDashboardPO openAdminSite(WebDriver driver, String adminUrl) {
+		openUrl(driver,adminUrl);
+		return pageObjects.wordpress.PageGeneratorManager.getAdminDashboardPage(driver);
+	}
+	
 	private WebDriverWait explicitWait;
 	private JavascriptExecutor jsExecutor;
 	private WebElement element;

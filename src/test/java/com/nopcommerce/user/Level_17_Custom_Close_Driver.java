@@ -16,7 +16,7 @@ import pageObjects.nopCommerce.user.UserHomePageObject;
 import pageObjects.nopCommerce.user.UserLoginPageObject;
 import pageObjects.nopCommerce.user.UserRegisterPageObject;
 
-public class Level_15_ReportNG_Screenshot extends BaseTest{
+public class Level_17_Custom_Close_Driver extends BaseTest{
 	private WebDriver driver;
 	private String firstName, emailAdress, lastName, validPassword;
 	String day, month, year;
@@ -33,10 +33,6 @@ public class Level_15_ReportNG_Screenshot extends BaseTest{
 		emailAdress = "tuyen" + randomNumber() + "@mail.vn";
 		validPassword = "123456";
 		
-	}
-	
-	@Test
-	public void User_01_Register_Login() {
 		log.info("Register - Step 01: Navigate to 'Register' page");
 		registerPage = homePage.clickToRegisterLink();
 		
@@ -59,14 +55,12 @@ public class Level_15_ReportNG_Screenshot extends BaseTest{
 		registerPage.clickToRegisterButton();
 		
 		log.info("Register - Step 08: Verify register success messge is displayed");
-		Assert.assertEquals(registerPage.getRegisterSuccessMessage(),"Your registration completed...");
+		Assert.assertEquals(registerPage.getRegisterSuccessMessage(),"Your registration completed");
 		
-	}
-	
-	@Test
-	public void User_02_Login() {
-		log.info("Login - Step 01: Navigate to Login page");
+		log.info("Register - Step 09: Click to Logout link");
 		homePage = registerPage.clickToLogoutLink();
+		
+		log.info("Login - Step 01: Navigate to Login page");
 		loginPage = homePage.clickToLoginLink();
 		
 		log.info("Login - Step 02: Enter to Email textbox with value is '" + emailAdress + "'");
@@ -77,25 +71,31 @@ public class Level_15_ReportNG_Screenshot extends BaseTest{
 		
 		log.info("Login - Step 04: Click to 'Register' button");
 		homePage = loginPage.clickToLoginButton();
-	//	Assert.assertTrue(homePage.isMyAccountLinkDisplayed());
 		log.info("Login - Step 05: Verify 'My account' link is displayed");
 		Assert.assertFalse(homePage.isMyAccountLinkDisplayed());
 		
 		log.info("Login - Step 06: Navigate to 'My account' page");
 		customerInforPage = homePage.clickToMyAccountLink();
-	//	Assert.assertTrue(customerInforPage.isCustomerInforDisplayed());
 		
 		log.info("Login - Step 07: Verify 'Customer Infor' page is displayed");
 		Assert.assertFalse(customerInforPage.isCustomerInforDisplayed());
+		
+	}
+	
+	@Test
+	public void User_01_Register_Login() {
 
 	}
 	
+	@Test
+	public void User_02_Login() {
+
+	}
 	
 
-
-	@AfterTest
+	@AfterTest (alwaysRun = true)
 	public void afterTest() {
-		driver.quit();
+		closeBrowserAndDriver();
 	}
 
 	public int randomNumber() {
