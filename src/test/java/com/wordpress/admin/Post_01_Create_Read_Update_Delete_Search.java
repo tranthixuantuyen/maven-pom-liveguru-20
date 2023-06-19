@@ -7,6 +7,12 @@ import org.testng.annotations.Test;
 
 import commons.BaseTest;
 import pageObjects.wordpress.*;
+import pageObjects.wordpress.AdminDashboardPO;
+import pageObjects.wordpress.AdminLoginPO;
+import pageObjects.wordpress.AdminPostAddNewPO;
+import pageObjects.wordpress.AdminPostSearchPO;
+import pageObjects.wordpress.UserHomePO;
+import pageObjects.wordpress.UserPostDetailPO;
 
 public class Post_01_Create_Read_Update_Delete_Search extends BaseTest{
 	private WebDriver driver;
@@ -18,7 +24,7 @@ public class Post_01_Create_Read_Update_Delete_Search extends BaseTest{
 	String searchPostUrl;
 	String editPostTitle = "Edit Title"+ randomNumber;
 	String editPostBody = "Edit Body"+ randomNumber;
-	String authorName = "automationfc";
+	String authorName = "Automation Admin";
 	String adminUrl, endUserUrl;
 	String currentDay = getCurrentDay();
 	
@@ -68,14 +74,14 @@ public class Post_01_Create_Read_Update_Delete_Search extends BaseTest{
 		log.info("Create_Post - Step 08: Verify 'Post published' message is displayed");
 		verifyTrue(adminPostAddNewPage.isPostPublishMessageDisplayed("Post published."));
 	}
-	
+
 	@Test
 	public void Post_02_Search_And_View_Post() {
 		log.info("Search_Post - Step 01: Open 'Search Posts' page");
 		adminPostSearchPage = adminPostAddNewPage.openSearchPostPageUrl(searchPostUrl);
 
 		log.info("Search_Post - Step 02: Enter to search textbox");
-		adminPostSearchPage.enterToSearchPostButton(postTitle);
+		adminPostSearchPage.enterToSearchTextbox(postTitle);
 
 		log.info("Search_Post - Step 03: Click to 'Search Posts' button");
 		adminPostSearchPage.clickToSearchButton();
@@ -113,7 +119,7 @@ public class Post_01_Create_Read_Update_Delete_Search extends BaseTest{
 		adminPostSearchPage = adminDashboarPage.clickToPostMenuLink();
 
 		log.info("Edit_Post - Step 03: Enter to Search textbox ");
-		adminPostSearchPage.enterToSearchPostButton(postTitle);
+		adminPostSearchPage.enterToSearchTextbox(postTitle);
 
 		log.info("Edit_Post - Step 04: Click to 'Search Posts' button");
 		adminPostSearchPage.clickToSearchButton();
@@ -137,7 +143,7 @@ public class Post_01_Create_Read_Update_Delete_Search extends BaseTest{
 		adminPostSearchPage = adminPostAddNewPage.openSearchPostPageUrl(searchPostUrl);
 
 		log.info("Edit_Post - Step 11: Enter to search textbox");
-		adminPostSearchPage.enterToSearchPostButton(editPostTitle);
+		adminPostSearchPage.enterToSearchTextbox(editPostTitle);
 
 		log.info("Edit_Post - Step 12: Click to 'Search Posts' button");
 		adminPostSearchPage.clickToSearchButton();
@@ -177,24 +183,46 @@ public class Post_01_Create_Read_Update_Delete_Search extends BaseTest{
 		adminPostSearchPage = adminDashboarPage.clickToPostMenuLink();
 
 		log.info("Delete_Post - Step 03: Enter to search textbox");
-		adminPostSearchPage.enterToSearchPostButton(editPostTitle);
+		adminPostSearchPage.enterToSearchTextbox(editPostTitle);
 
 		log.info("Delete_Post - Step 04: Click to 'Search Posts' button");
 		adminPostSearchPage.clickToSearchButton();
 
 		log.info("Delete_Post - Step 05: Select Post detail checkbox");
+		adminPostSearchPage.selectPostCheckboxByTitle(editPostTitle);
 
 		log.info("Delete_Post - Step 06: Select 'Move to Trash' item in dropdown");
+		adminPostSearchPage.selectTextItemActionDropdown("Move to Trash");
 
 		log.info("Delete_Post - Step 07: Click to 'Apply' button");
+		adminPostSearchPage.clickToApplyButton();
 
-		log.info("Delete_Post - Step 08: Verify '1 posst moved to the Trash.' message is displayed");
+		log.info("Delete_Post - Step 08: Verify '1 post moved to the Trash.' message is displayed");
+		verifyTrue(adminPostSearchPage.isMoveToTrashMessageDisplayed("1 post moved to the Trash. "));
 
 		log.info("Delete_Post - Step 09: Enter to Search textbox");
+		adminPostSearchPage.enterToSearchTextbox(editPostTitle);
 
 		log.info("Delete_Post - Step 10: Click to 'Search Posts' button");
+		adminPostSearchPage.clickToSearchButton();
 
 		log.info("Delete_Post - Step 11: Verify 'No posts found.' message is displayed");
+		verifyTrue(adminPostSearchPage.isNoPostFoundMessageDisplayed("No posts found."));
+
+		log.info("Delete_Post - Step 12: Open End User site");
+		userHomePage = adminPostSearchPage.openEndUserSite(driver, this.endUserUrl);
+
+		log.info("Delete_Post - Step 13: Verify Post title undisplayed at Home page");
+		verifyTrue(userHomePage.isNoPostInfoUndisplayedWithPostTitle(editPostTitle));
+
+		log.info("Delete_Post - Step 14: Enter to Search textbox");
+		userHomePage.enterToSearchTextbox(editPostTitle);
+
+		log.info("Delete_Post - Step 15: Click to 'Search' button");
+		userSearchPostPage = userHomePage.clickToSearchButton();
+
+		log.info("Delete_Post - Step 16: Verify 'Nothing Found' message is displayed");
+		verifyTrue(userSearchPostPage.isNothingFoundMessageDisplayed("Nothing Found"));
 
 	}
 	
@@ -203,7 +231,8 @@ public class Post_01_Create_Read_Update_Delete_Search extends BaseTest{
 	private AdminPostSearchPO adminPostSearchPage;
 	private AdminPostAddNewPO adminPostAddNewPage;
 	private UserHomePO userHomePage;
-	private  UserPostDetailPO userPostDeatilPage;
+	private UserPostDetailPO userPostDeatilPage;
+	private UserSearchPostPO userSearchPostPage;
 	
 
 }

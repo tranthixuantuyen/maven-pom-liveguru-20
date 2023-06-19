@@ -266,14 +266,15 @@ public class BasePage {
 
 	public void clearValueInElementByDeleteKey(WebDriver driver, String locator) {
 		element = getElement(driver, locator);
-		String os = System.getProperty("os.name");
+/*		String os = System.getProperty("os.name");
 		if (os.equals("WINDOWS")){
 			Keys.chord(Keys.CONTROL, "a");
 			element.sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
 		}else{
 			Keys.chord(Keys.COMMAND, "a");
 			element.sendKeys(Keys.chord(Keys.COMMAND,"a", Keys.DELETE));
-		}
+		}*/
+		element.sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
 	}
 
 	public void sendkeyToElement(WebDriver driver, String locator, String value, String... values) {
@@ -331,22 +332,29 @@ public class BasePage {
 	}
 	
 	public boolean isElementUndisplayed(WebDriver driver, String locator) {
-		System.out.println("Start time = " + new Date().toString());
-		
 		overrideImplicitTimeout(driver, GlobalConstants.SHORT_TIMEOUT);
 		elements = getElements(driver, locator);
 		overrideImplicitTimeout(driver, GlobalConstants.LONG_TIMEOUT);
 		
 		if (elements.size() == 0) {
-			System.out.println("Element not in DOM ");
-			System.out.println("End time = " + new Date().toString());
 			return true;
 		} else if (elements.size() > 0 && !elements.get(0).isDisplayed()) {
-			System.out.println("Element in DOM but not visible/ displayed ");
-			System.out.println("End time = " + new Date().toString());
 			return true;
 		} else {
-			System.out.println("Element in DOM and visiable");
+			return false;
+		}
+	}
+
+	public boolean isElementUndisplayed(WebDriver driver, String locator,String... values) {
+		overrideImplicitTimeout(driver, GlobalConstants.SHORT_TIMEOUT);
+		elements = getElements(driver, getDynamicLocator(locator, values));
+		overrideImplicitTimeout(driver, GlobalConstants.LONG_TIMEOUT);
+
+		if (elements.size() == 0) {
+			return true;
+		} else if (elements.size() > 0 && !elements.get(0).isDisplayed()) {
+			return true;
+		} else {
 			return false;
 		}
 	}
@@ -730,7 +738,7 @@ public class BasePage {
 
 	public AdminDashboardPO openAdminSite(WebDriver driver, String adminUrl) {
 		openUrl(driver,adminUrl);
-		return pageObjects.wordpress.PageGeneratorManager.getAdminDashboardPage(driver);
+		return pageObjects.wordpress.PageGeneratorManager.getAdminDasshboardPage(driver);
 	}
 	
 	private WebDriverWait explicitWait;
