@@ -1,6 +1,7 @@
 package com.wordpress.admin;
 
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -224,6 +225,11 @@ public class Post_01_Create_Read_Update_Delete_Search extends BaseTest{
 		log.info("Delete_Post - Step 16: Verify 'Nothing Found' message is displayed");
 		verifyTrue(userSearchPostPage.isNothingFoundMessageDisplayed("Nothing Found"));
 
+	}
+
+	@AfterClass(alwaysRun = true)
+	public void afterClass(){
+		closeBrowserAndDriver();
 	}
 	
 	private AdminLoginPO adminLoginPage;

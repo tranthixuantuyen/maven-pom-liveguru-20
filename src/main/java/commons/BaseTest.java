@@ -15,6 +15,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeSuite;
@@ -38,6 +39,7 @@ public class BaseTest {
 
 		if (browserName.equals("firefox")) {
 			WebDriverManager.firefoxdriver().setup();
+			FirefoxOptions options = new FirefoxOptions();
 			driverBaseTest = new FirefoxDriver();
 
 		} else if (browserName.equals("h_firefox")) {
@@ -49,7 +51,13 @@ public class BaseTest {
 
 		} else if (browserName.equals("chrome")) {
 			WebDriverManager.chromedriver().setup();
-			driverBaseTest = new ChromeDriver();
+
+			//Add Extensions for Chrome
+			File file = new File( GlobalConstants.PROJECT_PATH + "\\browserExtensions\\ggtranslate.crx");
+			ChromeOptions options = new ChromeOptions();
+			options.addExtensions(file);
+
+			driverBaseTest = new ChromeDriver(options);
 
 		} else if (browserName.equals("h_chrome")) {
 			WebDriverManager.chromedriver().setup();
@@ -85,7 +93,7 @@ public class BaseTest {
 			WebDriverManager.firefoxdriver().setup();
 			FirefoxOptions options = new FirefoxOptions();
 			options.setAcceptInsecureCerts(false);
-			driverBaseTest = new FirefoxDriver();
+			driverBaseTest = new FirefoxDriver(options);
 
 		} else if (browserName.equals("h_firefox")) {
 			WebDriverManager.firefoxdriver().setup();
@@ -97,6 +105,7 @@ public class BaseTest {
 		} else if (browserName.equals("chrome")) {
 			WebDriverManager.chromedriver().setup();
 			ChromeOptions options = new ChromeOptions();
+			// request SSL
 			options.setAcceptInsecureCerts(true);
 			driverBaseTest = new ChromeDriver(options);
 

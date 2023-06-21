@@ -20,16 +20,16 @@
 			<!-- Trigger Common Register run first -->
 			<class name="com.nopcommerce.common.Common_01_Register_End_User" />
 			
-			<class name="com.nopcommerce.user.Level_16_Share_Data" />
+			<!--<class name="com.nopcommerce.user.Level_16_Share_Data" />-->
 		</classes>
-	</test> 
+	</test>
 	
-	<!--  	 <test name="Run on Firefox">
+<!--	<test name="Run on Firefox">
 	  <parameter name="browser" value="firefox"/>
 	    <classes>
 	      <class name="com.nopcommerce.user.Level_12_Assert_Verify"/>
 	    </classes>
-	  </test>  -->
+	  </test>-->
 	
 <!-- 	<test name="Run on Headless Chrome">
 	<parameter name="browser" value="h_chrome" />
