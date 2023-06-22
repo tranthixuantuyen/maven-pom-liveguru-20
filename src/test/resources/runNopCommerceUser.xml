@@ -19,7 +19,7 @@
 		<classes>
 			<!-- Trigger Common Register run first -->
 			
-			<class name="com.nopcommerce.user.Level_20_Fake_Data" />
+			<class name="com.nopcommerce.user.Level_20_Manage_Data_Part_IV" />
 		</classes>
 	</test>
 	

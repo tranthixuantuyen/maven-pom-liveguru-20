@@ -1,15 +1,15 @@
 package utilities;
 
-import java.util.Locale;
-
 import com.github.javafaker.Faker;
 
-public class FakerConfig {
+import java.util.Locale;
+
+public class DataHelper {
 	private Locale locale = new Locale ("en");
 	private Faker faker = new Faker(locale);
 	
-	public static FakerConfig getData() {
-		return new FakerConfig();
+	public static DataHelper getDataHelper() {
+		return new DataHelper();
 	}
 	
 	public String getFirstName() {
