@@ -95,11 +95,11 @@ public class UserRegisterPageObject extends BasePage{
 	}
 	
 	@Step("Click to Logout link ")
-	public UserHomePageObject clickToLogoutLink() {
-		waitForElementClickable(driver, UserRegisterPageUI.LOGOUT_LINK);
-		clickToElement(driver, UserRegisterPageUI.LOGOUT_LINK);
+	public UserLoginPageObject clickToLoginLink() {
+		waitForElementClickable(driver, UserRegisterPageUI.LOGIN_LINK);
+		clickToElement(driver, UserRegisterPageUI.LOGIN_LINK);
 		//Cach 2. return new HomePageObject(driver);
-		return PageGeneratorManager.getUserHomePage(driver);
+		return PageGeneratorManager.getUserLoginPage(driver);
 	}
 	
 	public String getErrorMessageAtFirstNameTextbox() {

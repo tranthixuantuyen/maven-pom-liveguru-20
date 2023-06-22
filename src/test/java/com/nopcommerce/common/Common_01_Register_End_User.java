@@ -10,6 +10,7 @@ import org.testng.annotations.Parameters;
 import commons.BaseTest;
 import commons.PageGeneratorManager;
 import pageObjects.nopCommerce.user.UserHomePageObject;
+import pageObjects.nopCommerce.user.UserLoginPageObject;
 import pageObjects.nopCommerce.user.UserRegisterPageObject;
 
 public class Common_01_Register_End_User extends BaseTest{
@@ -50,8 +51,8 @@ public class Common_01_Register_End_User extends BaseTest{
 		log.info("Pre-condition - Step 08: Verify register success messge is displayed");
 		Assert.assertEquals(registerPage.getRegisterSuccessMessage(),"Your registration completed");
 		
-		log.info("Pre-condition - Step 09: Click to Logout link");
-		homePage = registerPage.clickToLogoutLink();
+		log.info("Pre-condition - Step 09: Click to Login link");
+		loginPage = registerPage.clickToLoginLink();
 		
 		driver.quit();
 
@@ -64,6 +65,7 @@ public class Common_01_Register_End_User extends BaseTest{
 	
 	private UserHomePageObject homePage;
 	private UserRegisterPageObject registerPage;
+	private UserLoginPageObject loginPage;
 	
 	private WebDriver driver;
 	private String firstName, lastName;

@@ -49,10 +49,9 @@ public class Level_12_Assert_Verify extends BaseTest{
 		registerPage.clickToRegisterButton();
 	//	Assert.assertEquals(registerPage.getRegisterSuccessMessage(),"Your registration completed");
 		verifyEquals(registerPage.getRegisterSuccessMessage(),"Your registration completed..");
-		
 
-		homePage = registerPage.clickToLogoutLink();
-		loginPage = homePage.clickToLoginLink();
+
+		loginPage = registerPage.clickToLoginLink();
 		
 		loginPage.inputToEmailTextbox(emailAdress);
 		loginPage.inputToPasswordTextbox(validPassword);

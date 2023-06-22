@@ -72,8 +72,7 @@ public class Level_15_ExtentV5_Screenshot extends BaseTest{
 	public void User_02_Login(Method method) {
 		ExtentTestManager.startTest(method.getName(), "User_02_Login");
 		ExtentTestManager.getTest().log(Status.INFO,"Login - Step 01: Navigate to Login page");
-		homePage = registerPage.clickToLogoutLink();
-		loginPage = homePage.clickToLoginLink();
+		loginPage = registerPage.clickToLoginLink();
 		
 		ExtentTestManager.getTest().log(Status.INFO,"Login - Step 02: Enter to Email textbox with value is '" + emailAdress + "'");
 		loginPage.inputToEmailTextbox(emailAdress);

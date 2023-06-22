@@ -2,7 +2,7 @@
 <suite name="NopCommerce - All">
 	<suite-files>
 		<suite-file path="runAdminTestcases.xml"/>
-		<suite-file path="runUserTestcases.xml"/>
+		<suite-file path="runNopCommerceUser.xml"/>
 	</suite-files>
 
   

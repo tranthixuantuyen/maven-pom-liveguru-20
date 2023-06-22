@@ -66,7 +66,7 @@ public class Level_03_Page_Object_02_Login {
 		Assert.assertEquals(registerPage.getRegisterSuccessMessage(),"Your registration completed");
 
 		System.out.println("Pre-Condition - Step 05: Click to logout link");
-		registerPage.clickToLogoutLink();
+		registerPage.clickToLoginLink();
 		
 		homePage = new UserHomePageObject(driver);
 	}

@@ -107,7 +107,7 @@ public class Level_04_Multiple_Browser extends BaseTest{
 		  ,"Your registration completed");
 		  
 		  System.out.println("Register Page - Step 05: Click to logout link");
-		  registerPage.clickToLogoutLink();
+		  registerPage.clickToLoginLink();
 		 
 
 	}

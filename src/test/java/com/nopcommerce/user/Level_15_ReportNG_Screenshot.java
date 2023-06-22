@@ -66,8 +66,7 @@ public class Level_15_ReportNG_Screenshot extends BaseTest{
 	@Test
 	public void User_02_Login() {
 		log.info("Login - Step 01: Navigate to Login page");
-		homePage = registerPage.clickToLogoutLink();
-		loginPage = homePage.clickToLoginLink();
+		loginPage = registerPage.clickToLoginLink();
 		
 		log.info("Login - Step 02: Enter to Email textbox with value is '" + emailAdress + "'");
 		loginPage.inputToEmailTextbox(emailAdress);

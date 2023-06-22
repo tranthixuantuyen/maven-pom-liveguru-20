@@ -102,7 +102,7 @@ public class Level_18_Register_Login_Fake_Data extends AbstractTest{
 		Assert.assertEquals(registerPage.getRegisterSuccessMessage(), "Your registration completed");
 		
 		log.info("Register - Step 16: CLick to logout link");
-		homePage = registerPage.clickToLogoutLink();
+		loginPage = registerPage.clickToLoginLink();
 	}
 
 	@Test

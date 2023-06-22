@@ -50,7 +50,7 @@ public class Level_08_Switch_Role extends BaseTest{
 		registerPage.clickToRegisterButton();
 		Assert.assertEquals(registerPage.getRegisterSuccessMessage(),"Your registration completed");
 
-		userHomePage = registerPage.clickToLogoutLink();
+		userLoginPage = registerPage.clickToLoginLink();
 		
 	}
 	@Test

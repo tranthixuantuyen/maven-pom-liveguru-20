@@ -54,8 +54,8 @@ public class Common_01_Register_Cookie extends BaseTest{
 		log.info("Register - Step 08: Verify register success messge is displayed");
 		Assert.assertEquals(registerPage.getRegisterSuccessMessage(),"Your registration completed");
 		
-		log.info("Register - Step 09: Click to Logout link");
-		homePage = registerPage.clickToLogoutLink();
+		log.info("Register - Step 09: Click to Logint link");
+		loginPage = registerPage.clickToLoginLink();
 		
 		log.info("Login - Step 10: Navigate to Login page");
 		loginPage = homePage.clickToLoginLink();

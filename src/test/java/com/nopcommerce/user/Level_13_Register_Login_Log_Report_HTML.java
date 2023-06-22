@@ -97,16 +97,14 @@ public class Level_13_Register_Login_Log_Report_HTML extends AbstractTest{
 		
 		log.info("Register - Step 15: Verify success mesage displayed");
 		Assert.assertEquals(registerPage.getRegisterSuccessMessage(), "Your registration completed");
-		
+
 		log.info("Register - Step 16: CLick to logout link");
-		homePage = registerPage.clickToLogoutLink();
+		loginPage = registerPage.clickToLoginLink();
 	}
 
 	@Test
 	public void TC_02_LoginToSystem() {
-		
-		log.info("Register - Step 01: CLick to login link");
-		loginPage = homePage.clickToLoginLink();
+
 		
 		log.info("Register - Step 02: input email");
 		loginPage.inputToEmailTextbox(email);

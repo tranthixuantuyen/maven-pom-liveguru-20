@@ -82,8 +82,8 @@ public class Level_11_Register_Login_Element_Undisplayed extends AbstractTest{
 		registerPage.clickToRegisterButton();
 		
 		Assert.assertEquals(registerPage.getRegisterSuccessMessage(), "Your registration completed");
-		
-		homePage = registerPage.clickToLogoutLink();
+
+		loginPage = registerPage.clickToLoginLink();
 	}
 
 	@Test

@@ -101,7 +101,7 @@ public class Level_03_Page_Object_01_Register {
 		Assert.assertEquals(registerPage.getRegisterSuccessMessage(),"Your registration completed");
 
 		System.out.println("Register Page - Step 05: Click to logout link");
-		registerPage.clickToLogoutLink();
+		registerPage.clickToLoginLink();
 
 	}
 

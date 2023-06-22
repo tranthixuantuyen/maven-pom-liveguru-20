@@ -68,8 +68,7 @@ public class Level_15_Allure extends BaseTest{
 	@Severity(SeverityLevel.NORMAL)
 	@Test
 	public void User_02_Login() {
-		homePage = registerPage.clickToLogoutLink();
-		loginPage = homePage.clickToLoginLink();
+		loginPage = registerPage.clickToLoginLink();
 		
 		loginPage.inputToEmailTextbox(emailAdress);
 		

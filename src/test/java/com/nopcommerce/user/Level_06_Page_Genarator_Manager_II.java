@@ -60,7 +60,7 @@ public class Level_06_Page_Genarator_Manager_II extends BaseTest{
 		Assert.assertEquals(registerPage.getRegisterSuccessMessage(),"Your registration completed");
 
 		System.out.println("Pre-Condition - Step 05: Click to logout link");
-		homePage = registerPage.clickToLogoutLink();
+		loginPage = registerPage.clickToLoginLink();
 		
 	}
 	

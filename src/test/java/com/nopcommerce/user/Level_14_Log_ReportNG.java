@@ -61,15 +61,13 @@ public class Level_14_Log_ReportNG extends BaseTest{
 		log.info("Register - Step 08: Verify register success messge is displayed");
 		Assert.assertEquals(registerPage.getRegisterSuccessMessage(),"Your registration completed");
 		
-		log.info("Register - Step 09: Click to Logout link");
-		homePage = registerPage.clickToLogoutLink();
+		log.info("Register - Step 09: Click to Logint link");
+		loginPage = registerPage.clickToLoginLink();
 
 	}
 	
 	@Test
 	public void User_02_Login() {
-		log.info("Login - Step 01: Navigate to Login page");
-		loginPage = homePage.clickToLoginLink();
 		
 		log.info("Login - Step 02: Enter to Email textbox with value is '" + emailAdress + "'");
 		loginPage.inputToEmailTextbox(emailAdress);
