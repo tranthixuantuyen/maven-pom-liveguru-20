@@ -39,7 +39,6 @@ public class BaseTest {
 
 		if (browserName.equals("firefox")) {
 			WebDriverManager.firefoxdriver().setup();
-			FirefoxOptions options = new FirefoxOptions();
 			driverBaseTest = new FirefoxDriver();
 
 		} else if (browserName.equals("h_firefox")) {
@@ -51,12 +50,8 @@ public class BaseTest {
 
 		} else if (browserName.equals("chrome")) {
 			WebDriverManager.chromedriver().setup();
-
-			//Add Extensions for Chrome
-			File file = new File( GlobalConstants.PROJECT_PATH + "\\browserExtensions\\ggtranslate.crx");
 			ChromeOptions options = new ChromeOptions();
-			options.addExtensions(file);
-
+			options.addArguments("--remote-allow-origins=*");
 			driverBaseTest = new ChromeDriver(options);
 
 		} else if (browserName.equals("h_chrome")) {
@@ -107,6 +102,7 @@ public class BaseTest {
 			ChromeOptions options = new ChromeOptions();
 			// request SSL
 			options.setAcceptInsecureCerts(true);
+			options.addArguments("--remote-allow-origins=*");
 			driverBaseTest = new ChromeDriver(options);
 
 		} else if (browserName.equals("h_chrome")) {
@@ -138,24 +134,31 @@ public class BaseTest {
 		}
 
 		driverBaseTest.manage().timeouts().implicitlyWait(GlobalConstants.LONG_TIMEOUT, TimeUnit.SECONDS);
+	//	driverBaseTest.get(getEnviromentUrl(appUrl));
 		driverBaseTest.get(appUrl);
 		return driverBaseTest;
 
 	}
 	
-	protected String getEnviromentUrl (String enviromentName) {
+	protected String getEnviromentUrl (String serverName) {
 		String url = null;
-		switch (enviromentName) {
-		case "DEV":
-			url = GlobalConstants.DEV_PORTAL_PAGE_URL;
-			break;
-		case "TEST":
-			url = GlobalConstants.TESTING_SERVE;
-			break;
+		EnviromentList enviroment = EnviromentList.valueOf(serverName.toLowerCase());
+		switch (enviroment) {
+			case DEV:
+				url = GlobalConstants.DEV_PORTAL_PAGE_URL;
+				break;
+			case TESTING:
+				url = GlobalConstants.TESTING_SERVE;
+				break;
+			case STAGING:
+				url = GlobalConstants.STAGING_SERVE;
+				break;
+			default:
+				url = null;
+				break;
 		}
 		return url;
 	}
-	
 	public WebDriver getDriverInstance() {
 		return driverBaseTest;
 	}

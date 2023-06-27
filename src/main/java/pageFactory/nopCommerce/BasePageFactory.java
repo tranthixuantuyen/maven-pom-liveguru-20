@@ -1,5 +1,6 @@
 package pageFactory.nopCommerce;
 
+import java.time.Duration;
 import java.util.List;
 
 import org.openqa.selenium.Alert;
@@ -24,7 +25,7 @@ public class BasePageFactory {
 
 
 	public Alert waitForAlertPresence(WebDriver driver) {
-		WebDriverWait explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
+		WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
 		return explicitWait.until(ExpectedConditions.alertIsPresent());
 	}
 
@@ -94,38 +95,38 @@ public class BasePageFactory {
 
 
 	public void waitForElementVisible(WebDriver driver, WebElement element) {
-		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
+		explicitWait = new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
 		explicitWait.until(ExpectedConditions.visibilityOf(element));
 	}
 	
 	public void waitForAllElementVisible(WebDriver driver, List<WebElement> elements) {
-		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
+		explicitWait = new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
 		explicitWait.until(ExpectedConditions.visibilityOfAllElements(elements));
 	}
 
 
 	public void waitForElementInvisible(WebDriver driver, WebElement element) {
-		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
+		explicitWait = new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
 		explicitWait.until(ExpectedConditions.invisibilityOf(element));
 	}
 	
 	public void waitForAllElementInvisible(WebDriver driver, List<WebElement> elements) {
-		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
+		explicitWait = new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
 		explicitWait.until(ExpectedConditions.invisibilityOfAllElements(elements));
 	}
 
 	public void waitToElementPresence(WebDriver driver, String locator) {
-		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
+		explicitWait = new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
 		explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(getByXpath(locator)));
 	}
 
 	public void waitToElementNumberToBe(WebDriver driver, String locator, int number) {
-		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
+		explicitWait = new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
 		explicitWait.until(ExpectedConditions.numberOfElementsToBe(getByXpath(locator), number));
 	}
 
 	public void waitForElementClickable(WebDriver driver, WebElement element) {
-		explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
+		explicitWait = new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
 		explicitWait.until(ExpectedConditions.elementToBeClickable(element));
 	}
 

@@ -1,11 +1,10 @@
-package data;
+package com.nopcommerce.data;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import commons.GlobalConstants;
 
-import javax.security.auth.Subject;
 import java.io.File;
 import java.util.List;
 

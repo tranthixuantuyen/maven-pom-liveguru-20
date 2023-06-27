@@ -2,8 +2,7 @@ package com.nopcommerce.user;
 
 import commons.BaseTest;
 import commons.PageGeneratorManager;
-import data.UserData;
-import data.UserDataMapper;
+import com.nopcommerce.data.UserDataMapper;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;

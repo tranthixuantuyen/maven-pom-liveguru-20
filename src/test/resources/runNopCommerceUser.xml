@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="NopCommerce">
+<suite name="NopCommerce - User">
 
 	<listeners>
 		<listener class-name="commons.MethodListener" />
 		
 		<!-- cho report testNG -->
-		<!-- <listener class-name="reportConfig.ReportNGListener" /> -->
+		 <listener class-name="reportConfig.ReportNGListener" />
 		
-<!-- 		<listener class-name="reportConfig.AllureTestListener" /> -->
-<!-- 		<listener class-name="org.uncommons.reportng.HTMLReporter"/> -->
-<!--      	<listener class-name="org.uncommons.reportng.JUnitXMLReporter"/> -->
+ 		<listener class-name="reportConfig.AllureTestListener" />
+ 		<listener class-name="org.uncommons.reportng.HTMLReporter"/>
+      	<listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
 	</listeners>
 	
-	<parameter name="enviroment" value="DEV" />
+	<parameter name="enviroment" value="dev" />
 	
 	<test name="Run on Chrome">
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<!-- Trigger Common Register run first -->
 			
-			<class name="com.nopcommerce.user.Level_20_Manage_Data_Part_IV" />
+			<class name="com.nopcommerce.user.Level_21_Multiple_Enviromment_Owner" />
 		</classes>
 	</test>
 	
 <!--	<test name="Run on Firefox">
 	  <parameter name="browser" value="firefox"/>
 	    <classes>
-	      <class name="com.nopcommerce.user.Level_12_Assert_Verify"/>
+	      <class name="com.nopcommerce.user.Level_20_Manage_Data_Part_IV"/>
 	    </classes>
 	  </test>-->
 	

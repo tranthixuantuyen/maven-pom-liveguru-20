@@ -1,8 +1,9 @@
 package com.nopcommerce.user;
 
+import com.nopcommerce.data.UserDataMapper;
 import commons.BaseTest;
 import commons.PageGeneratorManager;
-import com.nopcommerce.data.UserData;
+import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -13,17 +14,27 @@ import pageObjects.nopCommerce.user.UserCustomerInforPageObject;
 import pageObjects.nopCommerce.user.UserHomePageObject;
 import pageObjects.nopCommerce.user.UserLoginPageObject;
 import pageObjects.nopCommerce.user.UserRegisterPageObject;
+import utilities.Environment;
 
 import java.util.Random;
 
-public class Level_20_Manage_Data_Part_III extends BaseTest{
-	@Parameters("browser")
+public class Level_21_Multiple_Enviromment_Owner extends BaseTest{
+	Environment environment;
+	@Parameters({"browser","enviroment"})
 	@BeforeClass
-	public void beforeTest(String browserName) {
-		driver = getBrowserDriver(browserName);
-		homePage = PageGeneratorManager.getUserHomePage(driver);
+	public void beforeClass(String browserName, String enviromentName) {
+		ConfigFactory.setProperty("env",enviromentName);
+		environment = ConfigFactory.create(Environment.class);
 
-		emailAdress = UserData.Register.EMAIL_ADDRESS + randomNumber() + "@fakemail.com";
+		System.out.println( environment.appUrl());
+		System.out.println( environment.appUserName());
+
+		driver = getBrowserDriver(browserName, environment.appUrl());
+
+
+		homePage = PageGeneratorManager.getUserHomePage(driver);
+		userData = UserDataMapper.getUserData();
+		emailAdress = userData.getEmailAddress() + randomNumber() + "@fakemail.com";
 	}
 	
 	@Test
@@ -33,26 +44,26 @@ public class Level_20_Manage_Data_Part_III extends BaseTest{
 		
 		registerPage.clickToRadioButtonByLabel(driver,"Female");
 		
-		log.info("Register - Step 02: Enter to Firstname textbox with value is '" + UserData.Register.FIRST_NAME + "'");
-		registerPage.inputTextboxByID(driver,"FirstName",UserData.Register.FIRST_NAME);
+		log.info("Register - Step 02: Enter to Firstname textbox with value is '" + userData.getFirstName() + "'");
+		registerPage.inputTextboxByID(driver,"FirstName",userData.getFirstName());
 		
-		log.info("Register - Step 03: Enter to Lastname textbox with value is '" + UserData.Register.LAST_NAME + "'");
-		registerPage.inputTextboxByID(driver,"LastName",UserData.Register.LAST_NAME);
+		log.info("Register - Step 03: Enter to Lastname textbox with value is '" + userData.getLastName() + "'");
+		registerPage.inputTextboxByID(driver,"LastName",userData.getLastName());
 		
-		registerPage.selectToDropdownByName(driver,"DateOfBirthDay", UserData.Register.DATE);
-		registerPage.selectToDropdownByName(driver,"DateOfBirthMonth", UserData.Register.MONTH);
-		registerPage.selectToDropdownByName(driver,"DateOfBirthYear", UserData.Register.YEAR);
+		registerPage.selectToDropdownByName(driver,"DateOfBirthDay", userData.getDate());
+		registerPage.selectToDropdownByName(driver,"DateOfBirthMonth", userData.getMonth());
+		registerPage.selectToDropdownByName(driver,"DateOfBirthYear", userData.getYear());
 		
 		log.info("Register - Step 04: Enter to Email textbox with value is '" + emailAdress + "'");
 		registerPage.inputTextboxByID(driver,"Email",emailAdress);
 		
 		registerPage.clickToTextboxByLabel(driver,"Newsletter");
 		
-		log.info("Register - Step 05: Enter to Password textbox with value is '" + UserData.Register.PASSWORD + "'");
-		registerPage.inputTextboxByID(driver,"Password",UserData.Register.PASSWORD);
+		log.info("Register - Step 05: Enter to Password textbox with value is '" + userData.getLoginPassword() + "'");
+		registerPage.inputTextboxByID(driver,"Password",userData.getLoginPassword());
 		
-		log.info("Register - Step 06: Enter to Confirm Password textbox with value is '" + UserData.Register.PASSWORD + "'");
-		registerPage.inputTextboxByID(driver,"ConfirmPassword",UserData.Register.PASSWORD);
+		log.info("Register - Step 06: Enter to Confirm Password textbox with value is '" + userData.getLoginPassword() + "'");
+		registerPage.inputTextboxByID(driver,"ConfirmPassword",userData.getLoginPassword());
 		
 		log.info("Register - Step 07: Click to 'Register' button");
 		registerPage.clickToButtonByText(driver,"Register");
@@ -70,8 +81,8 @@ public class Level_20_Manage_Data_Part_III extends BaseTest{
 		log.info("Login - Step 02: Enter to Email textbox with value is '" + emailAdress + "'");
 		loginPage.inputTextboxByID(driver,"Email",emailAdress);
 		
-		log.info("Login - Step 03: Enter to Password textbox with value is '" + UserData.Register.PASSWORD + "'");
-		loginPage.inputTextboxByID(driver,"Password",UserData.Register.PASSWORD);
+		log.info("Login - Step 03: Enter to Password textbox with value is '" + userData.getLoginPassword() + "'");
+		loginPage.inputTextboxByID(driver,"Password",userData.getLoginPassword());
 		
 		log.info("Login - Step 04: Click to 'Register' button");
 		loginPage.clickToButtonByText(driver,"Log in");
@@ -97,10 +108,10 @@ public class Level_20_Manage_Data_Part_III extends BaseTest{
 		Assert.assertTrue(customerInforPage.isCustomerInforDisplayed());
 		
 		log.info("My Account - Step 03: Verify 'Firt Name' value is correctly");
-		Assert.assertEquals(customerInforPage.getTextboxValueByID(driver,"FirstName"), UserData.Register.FIRST_NAME);
+		Assert.assertEquals(customerInforPage.getTextboxValueByID(driver,"FirstName"), userData.getFirstName());
 		
 		log.info("My Account - Step 04: Verify 'Last Name' value is correctly");
-		Assert.assertEquals(customerInforPage.getTextboxValueByID(driver,"LastName"), UserData.Register.LAST_NAME);
+		Assert.assertEquals(customerInforPage.getTextboxValueByID(driver,"LastName"),userData.getLastName());
 		
 		log.info("My Account - Step 05: Verify 'Email' value is correctly");
 		Assert.assertEquals(customerInforPage.getTextboxValueByID(driver,"Email"), emailAdress);
@@ -108,8 +119,8 @@ public class Level_20_Manage_Data_Part_III extends BaseTest{
 	}
 
 	@AfterClass
-	public void afterTest() {
-		driver.quit();
+	public void afterClass() {
+		closeBrowserAndDriver();
 	}
 	private WebDriver driver;
 	private String emailAdress;
@@ -117,6 +128,7 @@ public class Level_20_Manage_Data_Part_III extends BaseTest{
 	private UserRegisterPageObject registerPage;
 	private UserLoginPageObject loginPage;
 	private UserCustomerInforPageObject customerInforPage;
+	UserDataMapper userData;
 	public int randomNumber() {
 		Random rand = new Random();
 		return rand.nextInt(99999);

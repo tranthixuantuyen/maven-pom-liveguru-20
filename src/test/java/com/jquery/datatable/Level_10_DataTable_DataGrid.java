@@ -21,10 +21,10 @@ public class Level_10_DataTable_DataGrid extends BaseTest {
 	List<String> actualAllCountryValues;
 	List<String> expectedAllCountryValues;
 
-	@Parameters({ "browser", "url" })
+	@Parameters({ "browser", "enviroment" })
 	@BeforeTest
-	public void beforeTest(String browserName, String appUrl) {
-		driver = getBrowserDriver(browserName, appUrl);
+	public void beforeTest(String browserName, String enviroment) {
+		driver = getBrowserDriver(browserName, enviroment);
 		homePage = PageGenaratorManager.getHomePage(driver);
 
 	}

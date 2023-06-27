@@ -19,10 +19,10 @@ public class Level_13_Element_Undisplayed extends BaseTest{
 	private LoginPageObject loginPage;
 	
 
-	@Parameters({"browser", "url"})
+	@Parameters({"browser", "enviroment"})
 	@BeforeTest
-	public void beforeTest(String browserName, String Url) {
-		driver = getBrowserDriver(browserName, Url);	
+	public void beforeTest(String browserName, String enviroment) {
+		driver = getBrowserDriver(browserName, enviroment);
 		loginPage = PageGeneratorManager.getLoginPage(driver);
 	}
 	
